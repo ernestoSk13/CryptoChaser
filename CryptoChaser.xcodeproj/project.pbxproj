@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		6E7AE4062DDD432900CAE565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E7AE3E72DDD432800CAE565 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E7AE3EE2DDD432800CAE565;
+			remoteInfo = CryptoChaser;
+		};
+		6E7AE4102DDD432900CAE565 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E7AE3E72DDD432800CAE565 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6E7AE3EE2DDD432800CAE565;
+			remoteInfo = CryptoChaser;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6E7AE3EF2DDD432800CAE565 /* CryptoChaser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoChaser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E7AE4052DDD432900CAE565 /* CryptoChaserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoChaserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E7AE40F2DDD432900CAE565 /* CryptoChaserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoChaserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6E7AE4172DDD432900CAE565 /* Exceptions for "CryptoChaser" folder in "CryptoChaser" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6E7AE3EE2DDD432800CAE565 /* CryptoChaser */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		6E7AE3F12DDD432800CAE565 /* CryptoChaser */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6E7AE4172DDD432900CAE565 /* Exceptions for "CryptoChaser" folder in "CryptoChaser" target */,
+			);
+			path = CryptoChaser;
+			sourceTree = "<group>";
+		};
+		6E7AE4082DDD432900CAE565 /* CryptoChaserTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CryptoChaserTests;
+			sourceTree = "<group>";
+		};
+		6E7AE4122DDD432900CAE565 /* CryptoChaserUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CryptoChaserUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6E7AE3EC2DDD432800CAE565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E7AE4022DDD432900CAE565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E7AE40C2DDD432900CAE565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6E7AE3E62DDD432800CAE565 = {
+			isa = PBXGroup;
+			children = (
+				6E7AE3F12DDD432800CAE565 /* CryptoChaser */,
+				6E7AE4082DDD432900CAE565 /* CryptoChaserTests */,
+				6E7AE4122DDD432900CAE565 /* CryptoChaserUITests */,
+				6E7AE3F02DDD432800CAE565 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6E7AE3F02DDD432800CAE565 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6E7AE3EF2DDD432800CAE565 /* CryptoChaser.app */,
+				6E7AE4052DDD432900CAE565 /* CryptoChaserTests.xctest */,
+				6E7AE40F2DDD432900CAE565 /* CryptoChaserUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6E7AE3EE2DDD432800CAE565 /* CryptoChaser */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E7AE4182DDD432900CAE565 /* Build configuration list for PBXNativeTarget "CryptoChaser" */;
+			buildPhases = (
+				6E7AE3EB2DDD432800CAE565 /* Sources */,
+				6E7AE3EC2DDD432800CAE565 /* Frameworks */,
+				6E7AE3ED2DDD432800CAE565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6E7AE3F12DDD432800CAE565 /* CryptoChaser */,
+			);
+			name = CryptoChaser;
+			packageProductDependencies = (
+			);
+			productName = CryptoChaser;
+			productReference = 6E7AE3EF2DDD432800CAE565 /* CryptoChaser.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6E7AE4042DDD432900CAE565 /* CryptoChaserTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E7AE41D2DDD432900CAE565 /* Build configuration list for PBXNativeTarget "CryptoChaserTests" */;
+			buildPhases = (
+				6E7AE4012DDD432900CAE565 /* Sources */,
+				6E7AE4022DDD432900CAE565 /* Frameworks */,
+				6E7AE4032DDD432900CAE565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E7AE4072DDD432900CAE565 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				6E7AE4082DDD432900CAE565 /* CryptoChaserTests */,
+			);
+			name = CryptoChaserTests;
+			packageProductDependencies = (
+			);
+			productName = CryptoChaserTests;
+			productReference = 6E7AE4052DDD432900CAE565 /* CryptoChaserTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6E7AE40E2DDD432900CAE565 /* CryptoChaserUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6E7AE4202DDD432900CAE565 /* Build configuration list for PBXNativeTarget "CryptoChaserUITests" */;
+			buildPhases = (
+				6E7AE40B2DDD432900CAE565 /* Sources */,
+				6E7AE40C2DDD432900CAE565 /* Frameworks */,
+				6E7AE40D2DDD432900CAE565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6E7AE4112DDD432900CAE565 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				6E7AE4122DDD432900CAE565 /* CryptoChaserUITests */,
+			);
+			name = CryptoChaserUITests;
+			packageProductDependencies = (
+			);
+			productName = CryptoChaserUITests;
+			productReference = 6E7AE40F2DDD432900CAE565 /* CryptoChaserUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6E7AE3E72DDD432800CAE565 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					6E7AE3EE2DDD432800CAE565 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					6E7AE4042DDD432900CAE565 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 6E7AE3EE2DDD432800CAE565;
+					};
+					6E7AE40E2DDD432900CAE565 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 6E7AE3EE2DDD432800CAE565;
+					};
+				};
+			};
+			buildConfigurationList = 6E7AE3EA2DDD432800CAE565 /* Build configuration list for PBXProject "CryptoChaser" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6E7AE3E62DDD432800CAE565;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 6E7AE3F02DDD432800CAE565 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6E7AE3EE2DDD432800CAE565 /* CryptoChaser */,
+				6E7AE4042DDD432900CAE565 /* CryptoChaserTests */,
+				6E7AE40E2DDD432900CAE565 /* CryptoChaserUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6E7AE3ED2DDD432800CAE565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E7AE4032DDD432900CAE565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E7AE40D2DDD432900CAE565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6E7AE3EB2DDD432800CAE565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E7AE4012DDD432900CAE565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6E7AE40B2DDD432900CAE565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6E7AE4072DDD432900CAE565 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E7AE3EE2DDD432800CAE565 /* CryptoChaser */;
+			targetProxy = 6E7AE4062DDD432900CAE565 /* PBXContainerItemProxy */;
+		};
+		6E7AE4112DDD432900CAE565 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6E7AE3EE2DDD432800CAE565 /* CryptoChaser */;
+			targetProxy = 6E7AE4102DDD432900CAE565 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		6E7AE4192DDD432900CAE565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49VFMFM852;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CryptoChaser/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsankur.CryptoChaser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6E7AE41A2DDD432900CAE565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49VFMFM852;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CryptoChaser/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsankur.CryptoChaser;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6E7AE41B2DDD432900CAE565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 49VFMFM852;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6E7AE41C2DDD432900CAE565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 49VFMFM852;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6E7AE41E2DDD432900CAE565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49VFMFM852;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsankur.CryptoChaserTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoChaser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoChaser";
+			};
+			name = Debug;
+		};
+		6E7AE41F2DDD432900CAE565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49VFMFM852;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsankur.CryptoChaserTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoChaser.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoChaser";
+			};
+			name = Release;
+		};
+		6E7AE4212DDD432900CAE565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49VFMFM852;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsankur.CryptoChaserUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CryptoChaser;
+			};
+			name = Debug;
+		};
+		6E7AE4222DDD432900CAE565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49VFMFM852;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsankur.CryptoChaserUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CryptoChaser;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6E7AE3EA2DDD432800CAE565 /* Build configuration list for PBXProject "CryptoChaser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E7AE41B2DDD432900CAE565 /* Debug */,
+				6E7AE41C2DDD432900CAE565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E7AE4182DDD432900CAE565 /* Build configuration list for PBXNativeTarget "CryptoChaser" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E7AE4192DDD432900CAE565 /* Debug */,
+				6E7AE41A2DDD432900CAE565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E7AE41D2DDD432900CAE565 /* Build configuration list for PBXNativeTarget "CryptoChaserTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E7AE41E2DDD432900CAE565 /* Debug */,
+				6E7AE41F2DDD432900CAE565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6E7AE4202DDD432900CAE565 /* Build configuration list for PBXNativeTarget "CryptoChaserUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6E7AE4212DDD432900CAE565 /* Debug */,
+				6E7AE4222DDD432900CAE565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6E7AE3E72DDD432800CAE565 /* Project object */;
+}
