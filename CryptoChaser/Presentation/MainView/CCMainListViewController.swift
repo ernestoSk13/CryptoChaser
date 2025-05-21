@@ -13,6 +13,7 @@ import UIKit
 final class CCMainListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private let viewModel: CCMainListViewModel
     private let reuseIdentifier = "CoinCell"
+    private let emptyCellIdentifier = "EmptyCell"
     private let tableView: UITableView = UITableView()
     private let searchController: UISearchController = UISearchController(searchResultsController: nil)
     private let activityIndicator: UIActivityIndicatorView = {
@@ -20,6 +21,9 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
     }()
+    
+    // DispatchWorkItem to debouncer search
+    var searchTask: DispatchWorkItem?
     
     private let errorView: UIView = {
         let view = UIView()
@@ -65,6 +69,7 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: emptyCellIdentifier)
         // Add activity indicator
         view.addSubview(activityIndicator)
         NSLayoutConstraint.activate([
@@ -78,6 +83,7 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
         searchController.searchBar.placeholder = "Search by Coin Name"
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.searchTextField.accessibilityIdentifier = Constants.Accessibility.MainList.SearchBar.TextField.identifier
         
         navigationController?.navigationBar.barTintColor = .systemBackground
         navigationItem.searchController = searchController
@@ -136,7 +142,8 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        let identifier = viewModel.coins.count > 0 ? reuseIdentifier : emptyCellIdentifier
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
         guard viewModel.coins.count > 0 else {
             cell.contentConfiguration = UIHostingConfiguration(content: {
                 PlaceholderCell()
@@ -163,7 +170,20 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
 
 extension CCMainListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        viewModel.searchCurrency(name: searchText)
+        searchTask?.cancel()
+        
+        let task = DispatchWorkItem { [weak self] in
+            self?.viewModel.searchCurrency(name: searchText)
+            self?.tableView.reloadData()
+        }
+        
+        searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: task)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        viewModel.searchCurrency(name: "")
         tableView.reloadData()
     }
 }

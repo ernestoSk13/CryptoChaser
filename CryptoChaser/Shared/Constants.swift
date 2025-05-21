@@ -21,6 +21,16 @@ enum Constants {
                 static let identifier = "CurrencyCell_$1"
                 static let value = "Currency price is $1"
             }
+            enum SearchBar {
+                enum TextField {
+                    static let label = "Search Bar"
+                    static let identifier = "main-table-view-search-bar"
+                }
+                enum CancelButton {
+                    static let label = "Cancel Button"
+                    static let identifier = "main-table-view-search-bar-cancel-button"
+                }
+            }
         }
     }
 }

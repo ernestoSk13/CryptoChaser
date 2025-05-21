@@ -14,16 +14,21 @@ protocol CryptoRepository {
 }
 
 final class MockCryptoRepository: CryptoRepository {
+    let mockService: CryptoServiceStub = CryptoServiceStub()
+    private let local: CurrencyCoreDataStorage = CurrencyCoreDataStorage()
+    
     func loadLocalCoins() throws -> [Currency] {
-        return []
+        let localElements = try local.fetchAllCoins()
+        return localElements.map { $0.toRemoteModel() }
     }
     
     func fetchCoins() async throws -> [Currency] {
-        return []
+        return try await mockService.fetchCoins()
     }
     
     func searchCurrency(name: String) throws -> [Currency] {
-        return []
+        let localCoins = try local.searchCurrency(name: name)
+        return localCoins.map { $0.toRemoteModel() }
     }
 }
 
