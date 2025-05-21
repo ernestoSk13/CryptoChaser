@@ -8,7 +8,14 @@
 import Foundation
 
 class RemoteCryptoService: CryptoService {
+    // If runned on simulator use ephemeral session. Info here: https://developer.apple.com/forums/thread/777999
+    #if targetEnvironment(simulator)
+    var session: URLSession = URLSession(configuration: .ephemeral)
+    #else
     var session: URLSession = URLSession.shared
+    #endif
+    
+    
     let fetchCoinsEnpoint = FetchCoinsEndpoint()
     
     func fetchCoins() async throws -> [Currency] {
