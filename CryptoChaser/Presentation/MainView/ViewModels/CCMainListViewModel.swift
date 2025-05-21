@@ -43,6 +43,10 @@ final class CCMainListViewModel: ObservableObject {
         
     }
     
+    func searchCurrency(name: String) {
+        
+    }
+    
     func didSelectCurrency(at index: Int) {
         let currency = coins[index]
         navigationHandler(currency)
