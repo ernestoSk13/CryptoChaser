@@ -10,6 +10,8 @@ import XCTest
 
 final class MainListTests: XCTestCase {
     private let tableView = XCUIApplication().tables[Constants.Accessibility.MainList.identifier]
+    private let searchBar = XCUIApplication().searchFields[Constants.Accessibility.MainList.SearchBar.TextField.identifier]
+    private let cancelButton = XCUIApplication().buttons["Cancel"]
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -65,6 +67,26 @@ final class MainListTests: XCTestCase {
             return
         }
         XCTAssert(cellValue == "$0.29")
+    }
+    
+    func testSearchCurrency() throws {
+        let app = XCUIApplication()
+        app.launchEnvironment["UITEST_MODE"] = "1"
+        app.launch()
+        
+        guard searchBar.exists else {
+            XCTFail("Search bar not found")
+            return
+        }
+        
+        searchBar.tap()
+        app.typeText("Hedera")
+        
+        let cellIdentifier = Constants.Accessibility.MainList.Row.identifier.replacingOccurrences(of: "$1", with: "hedera-hashgraph")
+        let targetCell = tableView.cells[cellIdentifier]
+        
+        XCTAssert(targetCell.exists)
+        cancelButton.tap()
     }
     
     func testLaunchPerformance() throws {
