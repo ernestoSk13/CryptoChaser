@@ -19,10 +19,25 @@ struct Currency: Codable {
     let high24: Double?
     let low24: Double?
     let priceChange24h: Double?
-    private let lastUpdated: String
+    let lastUpdated: String
     
     var lastUpdatedDate: Date? {
         return Date.dateFromString(lastUpdated)
+    }
+    
+    init(id: String, symbol: String, name: String, image: URL, currentPrice: Double, marketCap: Double?, marketCapRank: Double?, totalVolume: Double?, high24: Double?, low24: Double?, priceChange24h: Double?, lastUpdated: String) {
+        self.id = id
+        self.symbol = symbol
+        self.name = name
+        self.image = image
+        self.currentPrice = currentPrice
+        self.marketCap = marketCap
+        self.marketCapRank = marketCapRank
+        self.totalVolume = totalVolume
+        self.high24 = high24
+        self.low24 = low24
+        self.priceChange24h = priceChange24h
+        self.lastUpdated = lastUpdated
     }
     
     enum CodingKeys: String, CodingKey {

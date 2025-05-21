@@ -8,22 +8,47 @@
 import Foundation
 
 protocol CryptoRepository {
+    func loadLocalCoins() throws -> [Currency]
     func fetchCoins() async throws -> [Currency]
-    func searchCurrency(name: String) async throws -> [Currency]
+    func searchCurrency(name: String) throws -> [Currency]
+}
+
+final class MockCryptoRepository: CryptoRepository {
+    func loadLocalCoins() throws -> [Currency] {
+        return []
+    }
+    
+    func fetchCoins() async throws -> [Currency] {
+        return []
+    }
+    
+    func searchCurrency(name: String) throws -> [Currency] {
+        return []
+    }
 }
 
 final class DefaultCryptoRepository: CryptoRepository {
     private let service: CryptoService
+    private let local: CurrencyCoreDataStorage
     
-    init(service: CryptoService) {
+    init(service: CryptoService, local: CurrencyCoreDataStorage) {
         self.service = service
+        self.local = local
+    }
+    
+    func loadLocalCoins() throws -> [Currency] {
+        let localElements = try local.fetchAllCoins()
+        return localElements.map { $0.toRemoteModel() }
     }
     
     func fetchCoins() async throws -> [Currency] {
-        try await service.fetchCoins()
+        let remoteCoins = try await service.fetchCoins()
+        try await local.saveCurrencies(remoteCoins)
+        return remoteCoins
     }
     
-    func searchCurrency(name: String) async throws -> [Currency] {
-        return []
+    func searchCurrency(name: String) throws -> [Currency] {
+        let localCoins = try local.searchCurrency(name: name)
+        return localCoins.map { $0.toRemoteModel() }
     }
 }

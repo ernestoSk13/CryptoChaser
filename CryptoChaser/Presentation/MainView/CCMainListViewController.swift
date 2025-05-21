@@ -14,6 +14,7 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
     private let viewModel: CCMainListViewModel
     private let reuseIdentifier = "CoinCell"
     private let tableView: UITableView = UITableView()
+    private let searchController: UISearchController = UISearchController(searchResultsController: nil)
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -40,10 +41,10 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
         view.backgroundColor = .systemBackground
         title = "CryptoChaser"
         setupUI()
+        setupSearchController()
         setAccessibility()
         fetchCoins()
     }
-    
     
     func setupUI() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +71,17 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+    
+    func setupSearchController() {
+        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchController.searchBar.placeholder = "Search by Coin Name"
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        
+        navigationController?.navigationBar.barTintColor = .systemBackground
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     func setAccessibility() {
@@ -147,5 +159,11 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.didSelectCurrency(at: indexPath.row)
     }
-    
+}
+
+extension CCMainListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.searchCurrency(name: searchText)
+        tableView.reloadData()
+    }
 }
