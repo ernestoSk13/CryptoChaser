@@ -15,6 +15,7 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
     private let reuseIdentifier = "CoinCell"
     private let emptyCellIdentifier = "EmptyCell"
     private let tableView: UITableView = UITableView()
+    private let refreshControl = UIRefreshControl()
     private let searchController: UISearchController = UISearchController(searchResultsController: nil)
     private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
@@ -30,6 +31,8 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    private let errorSnackbar = SnackbarView()
     
     init(viewModel: CCMainListViewModel) {
         self.viewModel = viewModel
@@ -70,6 +73,10 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: emptyCellIdentifier)
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.tintColor = UIColor.lightGray
+        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing...")
         // Add activity indicator
         view.addSubview(activityIndicator)
         NSLayoutConstraint.activate([
@@ -116,16 +123,35 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
             activityIndicator.startAnimating()
             do {
                 try await viewModel.fetchCoins()
-                activityIndicator.stopAnimating()
                 errorView.isHidden = true
                 tableView.isHidden = false
-                tableView.reloadData()
+                endRefreshing()
             } catch {
-                tableView.isHidden = true
-                errorView.isHidden = false
-                activityIndicator.stopAnimating()
+                if viewModel.coins.isEmpty {
+                    showErrorScreen()
+                } else {
+                    presentNetworkErrorSnackbar()
+                }
+                endRefreshing()
             }
         }
+    }
+    
+    func endRefreshing() {
+        activityIndicator.stopAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.refreshControl.endRefreshing()
+        }
+        tableView.reloadData()
+    }
+    
+    func presentNetworkErrorSnackbar() {
+        errorSnackbar.present(in: view, message: "The network seems to be down. Please try again later.")
+    }
+    
+    func showErrorScreen() {
+        tableView.isHidden = true
+        errorView.isHidden = false
     }
     
     // MARK: TableView Data Source
@@ -165,6 +191,11 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
     // MARK: TableView Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         viewModel.didSelectCurrency(at: indexPath.row)
+    }
+    
+    // MARK: Refresh data
+    @objc private func refreshData() {
+        fetchCoins()
     }
 }
 
