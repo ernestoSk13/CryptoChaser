@@ -1,5 +1,5 @@
 //
-//  CoinGecko.swift
+//  FetchCoinsEndpoint.swift
 //  CryptoChaser
 //
 //  Created by Ernesto Sánchez Kuri on 20/05/25.

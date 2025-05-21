@@ -26,8 +26,10 @@ class RemoteCryptoService: CryptoService {
             let decoder = JSONDecoder()
             let coins = try decoder.decode([Currency].self, from: data)
             return coins
-        } catch {
-            throw NetworkError.other(error)
+        } catch let urlError as URLError {
+            throw NetworkError.urlError(urlError)
+        } catch let decodingError as DecodingError {
+            throw NetworkError.decodingError(decodingError)
         }
     }
 }
