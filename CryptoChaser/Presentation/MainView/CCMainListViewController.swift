@@ -163,9 +163,7 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
 
 extension CCMainListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard !searchText.isEmpty else {
-            return
-        }
-        
+        viewModel.searchCurrency(name: searchText)
+        tableView.reloadData()
     }
 }

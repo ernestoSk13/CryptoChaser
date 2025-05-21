@@ -17,6 +17,8 @@ final class CurrencyCoreDataStorage {
     
     func fetchCurrency(id: String) throws -> LocalCurrency? {
         let request: NSFetchRequest = LocalCurrency.fetchRequest()
+        let sort = NSSortDescriptor.init(key: "marketCapRank", ascending: true)
+        request.sortDescriptors = [sort]
         request.predicate = NSPredicate(format: "id == %@", id)
         let currencies = try coreDataManager.performFetchRequest(request)
         return currencies.first
@@ -24,8 +26,10 @@ final class CurrencyCoreDataStorage {
     
     func fetchCoinsRequest(_ query: String = "") -> NSFetchRequest<LocalCurrency> {
         let request: NSFetchRequest = LocalCurrency.fetchRequest()
+        let sort = NSSortDescriptor.init(key: "marketCapRank", ascending: true)
+        request.sortDescriptors = [sort]
         if !query.isEmpty {
-            request.predicate = NSPredicate(format: "name CONTAINS %@", query)
+            request.predicate = NSPredicate(format: "name CONTAINS[c] %@", query)
         }
         return request
     }

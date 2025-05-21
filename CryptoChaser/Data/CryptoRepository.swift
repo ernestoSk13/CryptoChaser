@@ -8,13 +8,13 @@
 import Foundation
 
 protocol CryptoRepository {
-    func loadLocalCoins() async throws -> [Currency]
+    func loadLocalCoins() throws -> [Currency]
     func fetchCoins() async throws -> [Currency]
     func searchCurrency(name: String) throws -> [Currency]
 }
 
 final class MockCryptoRepository: CryptoRepository {
-    func loadLocalCoins() async throws -> [Currency] {
+    func loadLocalCoins() throws -> [Currency] {
         return []
     }
     
@@ -36,7 +36,7 @@ final class DefaultCryptoRepository: CryptoRepository {
         self.local = local
     }
     
-    func loadLocalCoins() async throws -> [Currency] {
+    func loadLocalCoins() throws -> [Currency] {
         let localElements = try local.fetchAllCoins()
         return localElements.map { $0.toRemoteModel() }
     }
