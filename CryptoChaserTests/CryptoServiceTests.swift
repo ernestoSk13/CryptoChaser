@@ -9,7 +9,7 @@ import Testing
 @testable import CryptoChaser
 
 struct CryptoServiceTests {
-    let cryptoService = RemoteCryptoService()
+    let cryptoService = CryptoServiceStub()
     
     @Test func testFetchCoinsReturnArrayWithTwentyElements() async throws {
         let coins = try await cryptoService.fetchCoins()
