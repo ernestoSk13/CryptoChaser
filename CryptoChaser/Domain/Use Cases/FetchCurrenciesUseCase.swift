@@ -19,6 +19,6 @@ final class DefaultFetchCurrencyUseCase: FetchCurrencyUseCase {
     }
     
     func execute() async throws -> [Currency] {
-        return []
+        try await repository.fetchCoins()
     }
 }

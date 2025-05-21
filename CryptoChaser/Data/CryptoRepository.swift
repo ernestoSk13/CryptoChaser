@@ -20,7 +20,7 @@ final class DefaultCryptoRepository: CryptoRepository {
     }
     
     func fetchCoins() async throws -> [Currency] {
-        return []
+        try await service.fetchCoins()
     }
     
     func searchCurrency(name: String) async throws -> [Currency] {
