@@ -19,12 +19,13 @@ final class DefaultDependencyContainer: DependencyContainer {
         let repository = DefaultCryptoRepository(service: dataSource)
         let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
         let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
-        let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase)
+        let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase, navigationHandler: navigationHandler)
         return CCMainListViewController(viewModel: viewModel)
     }
     
     func makeCurrencyDetailScreen(currency: Currency) -> UIViewController {
-        return CurrencyDetailViewController()
+        let viewModel = CurrencyDetailViewModel(currency: currency)
+        return CurrencyDetailViewController(viewModel: viewModel)
     }
 }
 
@@ -34,11 +35,12 @@ final class MockedDependencyContainer: DependencyContainer {
         let repository = DefaultCryptoRepository(service: dataSource)
         let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
         let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
-        let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase)
+        let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase, navigationHandler: navigationHandler)
         return CCMainListViewController(viewModel: viewModel)
     }
     
     func makeCurrencyDetailScreen(currency: Currency) -> UIViewController {
-        return CurrencyDetailViewController()
+        let viewModel = CurrencyDetailViewModel(currency: currency)
+        return CurrencyDetailViewController(viewModel: viewModel)
     }
 }

@@ -21,10 +21,13 @@ final class CCMainListViewModel: ObservableObject {
     @Published private(set) var coins: [Currency] = []
     @Published private(set) var errorString: String = ""
     private let logger = Logger()
+    // Navigation handler that will be managed in the App Coordinator
+    private let navigationHandler: (Currency) -> Void
     
-    init(fetchUseCase: FetchCurrencyUseCase, searchUseCase: SearchCurrencyUseCase) {
+    init(fetchUseCase: FetchCurrencyUseCase, searchUseCase: SearchCurrencyUseCase, navigationHandler: @escaping (Currency) -> Void) {
         self.fetchUseCase = fetchUseCase
         self.searchUseCase = searchUseCase
+        self.navigationHandler = navigationHandler
     }
     
     ///  Fetch coins using the `fetchUseCase`, returns an array of `Currency`. Throws an error if fails. Once the concurrent function finishes it returns to the main actor without compromising the UI
@@ -38,5 +41,10 @@ final class CCMainListViewModel: ObservableObject {
             throw CoinFetchError.networkError(error)
         }
         
+    }
+    
+    func didSelectCurrency(at index: Int) {
+        let currency = coins[index]
+        navigationHandler(currency)
     }
 }

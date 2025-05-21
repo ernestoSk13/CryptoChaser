@@ -20,12 +20,23 @@ final class AppCoordinator {
     }
     
     func start() {
-        let rootViewController = container.makeCurrentListScreen { currency in
-            // TODO: Show Detail Screen
+        let rootViewController = container.makeCurrentListScreen { [weak self] currency in
+            // Show Detail Screen
+            self?.showDetail(for: currency)
         }
         let navigationController = UINavigationController(rootViewController: rootViewController)
         self.navigationController = navigationController
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
+    }
+    
+    private func showDetail(for currency: Currency) {
+        let detailViewController = container.makeCurrencyDetailScreen(currency: currency)
+        // If we want to have a navigation detailed view, we can push it with just one line change.
+        //navigationController?.pushViewController(detailViewController, animated: true)
+        if let sheet = detailViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        navigationController?.present(detailViewController, animated: true)
     }
 }
