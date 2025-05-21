@@ -40,6 +40,7 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
         view.backgroundColor = .systemBackground
         title = "CryptoChaser"
         setupUI()
+        setAccessibility()
         fetchCoins()
     }
     
@@ -69,7 +70,11 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        
+    }
+    
+    func setAccessibility() {
+        tableView.accessibilityLabel = Constants.Accessibility.MainList.label
+        tableView.accessibilityIdentifier = Constants.Accessibility.MainList.identifier
     }
     
     func setupErrorView() {
@@ -131,6 +136,10 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
         cell.contentConfiguration = UIHostingConfiguration(content: {
             CurrencyCell(viewModel: CurrencyCellViewModel(currency: currency))
         })
+        cell.accessibilityLabel = "\(currency.name)"
+        cell.accessibilityValue = "\(currency.currentPrice.formatCurrency())"
+        cell.accessibilityIdentifier = Constants.Accessibility.MainList.Row.identifier.replacingOccurrences(of: "$1", with: currency.id)
+        
         return cell
     }
     

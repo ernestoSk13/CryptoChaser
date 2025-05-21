@@ -18,7 +18,7 @@ struct CurrencyCell: View {
                 .frame(width: 50, height: 50)
                 .padding(.trailing)
             VStack(alignment: .leading) {
-                Text(viewModel.name)
+                Text(viewModel.cellTitle)
                     .bold()
                 Text(viewModel.price)
                     .font(.callout)
@@ -28,6 +28,8 @@ struct CurrencyCell: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .ignore)
+        .accessibilityHidden(true)
     }
 }
 

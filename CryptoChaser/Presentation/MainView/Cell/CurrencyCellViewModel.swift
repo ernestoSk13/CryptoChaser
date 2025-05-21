@@ -10,8 +10,16 @@ import Foundation
 final class CurrencyCellViewModel {
     private let currency: Currency
     
+    var currencyIdentifier: String {
+        currency.id
+    }
+    
+    var cellTitle: String {
+        "\(name) - (\(currencyIdentifier))"
+    }
+    
     var name: String {
-        "\(currency.id) \(currency.name)"
+        currency.name
     }
     
     var price: String {

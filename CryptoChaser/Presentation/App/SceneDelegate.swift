@@ -16,7 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        container = DefaultDependencyContainer()
+        let isUITest = ProcessInfo.processInfo.environment["UITEST_MODE"] == "1"
+        container = isUITest ? MockedDependencyContainer() : DefaultDependencyContainer()
         let coordinator = AppCoordinator(window: window, container: container)
         self.coordinator = coordinator
         coordinator.start()
@@ -50,7 +51,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 
