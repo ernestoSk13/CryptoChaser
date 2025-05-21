@@ -1,36 +1,34 @@
 //
-//  CurrencyCell.swift
+//  PlaceholderCell.swift
 //  CryptoChaser
 //
-//  Created by Ernesto Sánchez Kuri on 20/05/25.
+//  Created by Ernesto Sánchez Kuri on 21/05/25.
 //
 
-
 import SwiftUI
-import SDWebImage
 
-struct CurrencyCell: View {
-    let viewModel: CurrencyCellViewModel
-    
+struct PlaceholderCell: View {
     var body: some View {
         HStack {
-            RemoteImageView(url: viewModel.imageURL)
+            Image(systemName: "bitcoinsign.circle")
+                .resizable()
                 .frame(width: 50, height: 50)
                 .padding(.trailing)
             VStack(alignment: .leading) {
-                Text(viewModel.name)
+                Text("placeholder-title-label")
                     .bold()
-                Text(viewModel.price)
+                Text("placeholder-price")
                     .font(.callout)
-                Text(viewModel.lastUpdated)
+                Text("placeholder-date-time-label")
                     .font(.footnote)
                     .foregroundStyle(Color.secondary)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .redacted(reason: .placeholder)
     }
 }
 
 #Preview {
-    CurrencyCell(viewModel: CurrencyCellViewModel(currency: Currency.sample))
+    PlaceholderCell()
 }

@@ -23,7 +23,6 @@ struct RemoteImageView: View {
         .indicator(.activity)
         .transition(.fade(duration: 0.3))
         .scaledToFit()
-        .frame(width: 50, height: 50)
     }
 }
 
