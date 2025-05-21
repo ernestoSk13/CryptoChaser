@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SearchCurrencyUseCase {
-    func execute(query: String) async throws -> [Currency]
+    func execute(query: String) throws -> [Currency]
 }
 
 final class DefaultSearchCurrencyUseCase: SearchCurrencyUseCase {
@@ -18,7 +18,8 @@ final class DefaultSearchCurrencyUseCase: SearchCurrencyUseCase {
         self.repository = repository
     }
     
-    func execute(query: String) async throws -> [Currency] {
-        return []
+    func execute(query: String) throws -> [Currency] {
+        let coins = try repository.searchCurrency(name: query)
+        return coins
     }
 }

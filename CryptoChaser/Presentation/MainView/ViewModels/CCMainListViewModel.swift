@@ -34,17 +34,30 @@ final class CCMainListViewModel: ObservableObject {
     @MainActor
     func fetchCoins() async throws {
         do {
-            let coins = try await fetchUseCase.execute()
+            // Load locally first
+            let localCoins = try await fetchUseCase.fetchLocal()
+            self.coins = localCoins
+            
+            //After fetching from core data, fetch from the service
+            let coins = try await fetchUseCase.fetchRemote()
             self.coins = coins
-        } catch {
+        } catch let localError as CoreDataError {
             errorString = "There was an error fetching the coins, try again later."
-            throw CoinFetchError.networkError(error)
+            throw CoinFetchError.networkError(localError)
+        } catch let networkError  {
+            errorString = "There was an error fetching the coins, try again later."
+            throw CoinFetchError.networkError(networkError)
         }
         
     }
     
     func searchCurrency(name: String) {
-        
+        do {
+            let coins = try searchUseCase.execute(query: name)
+            self.coins = coins
+        } catch {
+            debugPrint("Error searching currency")
+        }
     }
     
     func didSelectCurrency(at index: Int) {

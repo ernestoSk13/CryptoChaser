@@ -8,7 +8,8 @@
 import Foundation
 
 protocol FetchCurrencyUseCase {
-    func execute() async throws -> [Currency]
+    func fetchLocal() async throws -> [Currency]
+    func fetchRemote() async throws -> [Currency]
 }
 
 final class DefaultFetchCurrencyUseCase: FetchCurrencyUseCase {
@@ -18,7 +19,11 @@ final class DefaultFetchCurrencyUseCase: FetchCurrencyUseCase {
         self.repository = repository
     }
     
-    func execute() async throws -> [Currency] {
+    func fetchLocal() async throws -> [Currency] {
+        try await repository.loadLocalCoins()
+    }
+    
+    func fetchRemote() async throws -> [Currency] {
         try await repository.fetchCoins()
     }
 }

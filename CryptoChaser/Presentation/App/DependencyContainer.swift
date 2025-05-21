@@ -16,7 +16,8 @@ protocol DependencyContainer {
 final class DefaultDependencyContainer: DependencyContainer {
     func makeCurrentListScreen(navigationHandler: @escaping (Currency) -> ()) -> UIViewController {
         let dataSource = RemoteCryptoService()
-        let repository = DefaultCryptoRepository(service: dataSource)
+        let localDataSource = CurrencyCoreDataStorage()
+        let repository = DefaultCryptoRepository(service: dataSource, local: localDataSource)
         let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
         let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
         let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase, navigationHandler: navigationHandler)
@@ -32,7 +33,7 @@ final class DefaultDependencyContainer: DependencyContainer {
 final class MockedDependencyContainer: DependencyContainer {
     func makeCurrentListScreen(navigationHandler: @escaping (Currency) -> ()) -> UIViewController {
         let dataSource = CryptoServiceStub()
-        let repository = DefaultCryptoRepository(service: dataSource)
+        let repository = MockCryptoRepository()
         let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
         let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
         let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase, navigationHandler: navigationHandler)
