@@ -123,22 +123,26 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
             activityIndicator.startAnimating()
             do {
                 try await viewModel.fetchCoins()
-                activityIndicator.stopAnimating()
-                refreshControl.endRefreshing()
                 errorView.isHidden = true
                 tableView.isHidden = false
-                tableView.reloadData()
+                endRefreshing()
             } catch {
                 if viewModel.coins.isEmpty {
                     showErrorScreen()
                 } else {
                     presentNetworkErrorSnackbar()
-                    tableView.reloadData()
                 }
-                activityIndicator.stopAnimating()
-                refreshControl.endRefreshing()
+                endRefreshing()
             }
         }
+    }
+    
+    func endRefreshing() {
+        activityIndicator.stopAnimating()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.refreshControl.endRefreshing()
+        }
+        tableView.reloadData()
     }
     
     func presentNetworkErrorSnackbar() {
