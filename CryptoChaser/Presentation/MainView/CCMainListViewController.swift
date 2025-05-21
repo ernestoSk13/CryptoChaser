@@ -145,7 +145,7 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
     
     // MARK: TableView Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Show detail view
+        viewModel.didSelectCurrency(at: indexPath.row)
     }
     
 }
