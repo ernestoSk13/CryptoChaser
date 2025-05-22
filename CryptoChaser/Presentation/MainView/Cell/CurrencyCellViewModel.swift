@@ -14,12 +14,12 @@ final class CurrencyCellViewModel {
         currency.id
     }
     
-    var cellTitle: String {
-        "\(name) - (\(currencyIdentifier))"
-    }
-    
     var name: String {
         currency.name
+    }
+    
+    var symbol: String {
+        "\(currency.symbol)"
     }
     
     var price: String {
@@ -27,8 +27,8 @@ final class CurrencyCellViewModel {
     }
     
     var lastUpdated: String {
-        let lastUpdatedValue = currency.lastUpdatedDate?.shortForm ?? "N/A"
-        return "Last updated: \(lastUpdatedValue)"
+        let lastUpdatedValue = currency.lastUpdatedDate?.hourAndMinute ?? "N/A"
+        return "\(lastUpdatedValue)"
     }
     
     var imageURL: URL {

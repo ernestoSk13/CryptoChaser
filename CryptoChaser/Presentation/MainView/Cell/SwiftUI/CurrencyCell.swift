@@ -17,15 +17,23 @@ struct CurrencyCell: View {
             RemoteImageView(url: viewModel.imageURL)
                 .frame(width: 50, height: 50)
                 .padding(.trailing)
+                .shadow(radius: 3)
             VStack(alignment: .leading) {
-                Text(viewModel.cellTitle)
+                Text(viewModel.name)
+                    .font(.headline)
                     .bold()
-                Text(viewModel.price)
-                    .font(.callout)
+                Text(viewModel.symbol)
+                    .font(.subheadline)
+                    .foregroundStyle(Color.secondary)
                 Text(viewModel.lastUpdated)
                     .font(.footnote)
                     .foregroundStyle(Color.secondary)
             }
+            Spacer()
+            Text(viewModel.price)
+                .font(.headline)
+                .bold()
+                
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityElement(children: .ignore)

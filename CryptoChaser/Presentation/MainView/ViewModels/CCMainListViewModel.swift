@@ -13,6 +13,12 @@ enum CoinFetchError: Error {
     case networkError(Error)
 }
 
+enum SortingOption: String, CaseIterable {
+    case name
+    case price
+    case marketCapRank
+}
+
 final class CCMainListViewModel: ObservableObject {
     // Use case for fetching an array of currencies
     private let fetchUseCase: FetchCurrencyUseCase
@@ -23,6 +29,8 @@ final class CCMainListViewModel: ObservableObject {
     private let logger = Logger()
     // Navigation handler that will be managed in the App Coordinator
     private let navigationHandler: (Currency) -> Void
+    @Published var sortingOption: SortingOption = .marketCapRank
+    @Published var ascendingOrder: Bool = true
     
     init(fetchUseCase: FetchCurrencyUseCase, searchUseCase: SearchCurrencyUseCase, navigationHandler: @escaping (Currency) -> Void) {
         self.fetchUseCase = fetchUseCase
@@ -35,12 +43,13 @@ final class CCMainListViewModel: ObservableObject {
     func fetchCoins() async throws {
         do {
             // Load locally first
-            let localCoins = try await fetchUseCase.fetchLocal()
+            let localCoins = try fetchUseCase.fetchLocal()
             self.coins = localCoins
-            
+            sortCurrencies()
             //After fetching from core data, fetch from the service
             let coins = try await fetchUseCase.fetchRemote()
             self.coins = coins
+            sortCurrencies()
         } catch let localError as CoreDataError {
             errorString = "There was an error fetching the coins, try again later."
             throw CoinFetchError.networkError(localError)
@@ -49,6 +58,20 @@ final class CCMainListViewModel: ObservableObject {
             throw CoinFetchError.networkError(networkError)
         }
         
+    }
+    
+    func sortCurrencies(_ sortedOption: SortingOption? = nil) {
+        ascendingOrder = sortedOption == sortingOption && sortedOption != nil ? !ascendingOrder : ascendingOrder
+        sortingOption = sortedOption ?? self.sortingOption
+        coins.sort(by: { c1, c2 in
+            switch sortingOption {
+            case .name:
+                return ascendingOrder ? c1.name < c2.name : c1.name > c2.name
+            case .price:
+                return ascendingOrder ? c1.currentPrice < c2.currentPrice : c1.currentPrice > c2.currentPrice
+            case .marketCapRank:
+                return ascendingOrder ? c1.marketCapRank ?? 0 < c2.marketCapRank ?? 0 : c1.marketCapRank ?? 0 > c2.marketCapRank ?? 0
+            }})
     }
     
     func searchCurrency(name: String) {
@@ -65,3 +88,4 @@ final class CCMainListViewModel: ObservableObject {
         navigationHandler(currency)
     }
 }
+

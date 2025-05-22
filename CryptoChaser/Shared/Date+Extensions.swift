@@ -15,6 +15,13 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    var hourAndMinute: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.locale = Locale.current
+        return dateFormatter.string(from: self)
+    }
+    
     static func dateFromString(_ dateString: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
