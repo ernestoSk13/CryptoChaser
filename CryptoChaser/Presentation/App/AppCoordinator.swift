@@ -25,7 +25,6 @@ final class AppCoordinator {
             self?.showDetail(for: currency)
         }
         let navigationController = UINavigationController(rootViewController: rootViewController)
-        navigationController.navigationBar.prefersLargeTitles = true
         self.navigationController = navigationController
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
@@ -33,10 +32,11 @@ final class AppCoordinator {
     
     private func showDetail(for currency: Currency) {
         let detailViewController = container.makeCurrencyDetailScreen(currency: currency)
-        navigationController?.pushViewController(detailViewController, animated: true)
-//        if let sheet = detailViewController.sheetPresentationController {
-//            sheet.detents = [.medium()]
-//        }
-//        navigationController?.present(detailViewController, animated: true)
+        // If ipad show modally
+        if (UIDevice().userInterfaceIdiom == .pad ) {
+            navigationController?.present(detailViewController, animated: true)
+        } else {
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
     }
 }

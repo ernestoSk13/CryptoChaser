@@ -28,6 +28,8 @@ extension Double {
         let sign = self < 0 ? "-" : ""
         
         switch num {
+        case 1_000_000_000_000...:
+            return "\(sign)\(String(format: "%.2f", num / 1_000_000_000_000))T"
         case 1_000_000_000...:
             return "\(sign)\(String(format: "%.2f", num / 1_000_000_000))B"
         case 1_000_000...:
