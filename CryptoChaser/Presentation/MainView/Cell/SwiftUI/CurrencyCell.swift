@@ -7,7 +7,6 @@
 
 
 import SwiftUI
-import SDWebImage
 
 struct CurrencyCell: View {
     let viewModel: CurrencyCellViewModel

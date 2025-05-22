@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E7AE4DF2DDD75C800CAE565 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6E7AE4DE2DDD75C800CAE565 /* SDWebImageSwiftUI */; };
 		6E7AE4F22DDDAE9D00CAE565 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6E7AE4F12DDDAE9D00CAE565 /* Lottie */; };
-		6E7AE5FA2DDDBC7B00CAE565 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6E7AE5F92DDDBC7B00CAE565 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +77,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E7AE4DF2DDD75C800CAE565 /* SDWebImageSwiftUI in Frameworks */,
 				6E7AE4F22DDDAE9D00CAE565 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,7 +92,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E7AE5FA2DDDBC7B00CAE565 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +146,6 @@
 			);
 			name = CryptoChaser;
 			packageProductDependencies = (
-				6E7AE4DE2DDD75C800CAE565 /* SDWebImageSwiftUI */,
 				6E7AE4F12DDDAE9D00CAE565 /* Lottie */,
 			);
 			productName = CryptoChaser;
@@ -198,7 +193,6 @@
 			);
 			name = CryptoChaserUITests;
 			packageProductDependencies = (
-				6E7AE5F92DDDBC7B00CAE565 /* SDWebImageSwiftUI */,
 			);
 			productName = CryptoChaserUITests;
 			productReference = 6E7AE40F2DDD432900CAE565 /* CryptoChaserUITests.xctest */;
@@ -237,7 +231,6 @@
 			mainGroup = 6E7AE3E62DDD432800CAE565;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				6E7AE4DD2DDD75C800CAE565 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				6E7AE4F02DDDAE9D00CAE565 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -334,7 +327,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsankur.CryptoChaser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsk.CryptoChaser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -362,7 +355,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsankur.CryptoChaser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsk.CryptoChaser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -605,14 +598,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6E7AE4DD2DDD75C800CAE565 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.3;
-			};
-		};
 		6E7AE4F02DDDAE9D00CAE565 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -624,20 +609,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6E7AE4DE2DDD75C800CAE565 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6E7AE4DD2DDD75C800CAE565 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
-		};
 		6E7AE4F12DDDAE9D00CAE565 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6E7AE4F02DDDAE9D00CAE565 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		6E7AE5F92DDDBC7B00CAE565 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6E7AE4DD2DDD75C800CAE565 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
