@@ -25,6 +25,7 @@ final class AppCoordinator {
             self?.showDetail(for: currency)
         }
         let navigationController = UINavigationController(rootViewController: rootViewController)
+        navigationController.navigationBar.prefersLargeTitles = true
         self.navigationController = navigationController
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
@@ -32,11 +33,10 @@ final class AppCoordinator {
     
     private func showDetail(for currency: Currency) {
         let detailViewController = container.makeCurrencyDetailScreen(currency: currency)
-        // If we want to have a navigation detailed view, we can push it with just one line change.
-        //navigationController?.pushViewController(detailViewController, animated: true)
-        if let sheet = detailViewController.sheetPresentationController {
-            sheet.detents = [.medium()]
-        }
-        navigationController?.present(detailViewController, animated: true)
+        navigationController?.pushViewController(detailViewController, animated: true)
+//        if let sheet = detailViewController.sheetPresentationController {
+//            sheet.detents = [.medium()]
+//        }
+//        navigationController?.present(detailViewController, animated: true)
     }
 }

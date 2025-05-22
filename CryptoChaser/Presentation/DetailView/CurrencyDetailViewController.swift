@@ -14,13 +14,6 @@ final class CurrencyDetailViewController: UIViewController {
     private let viewModel: CurrencyDetailViewModel
     private let viewIdentifier = "detail_view"
     
-    private let closeButton: UIButton = {
-        let button = UIButton(configuration: .plain())
-        button.setTitle("Close", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     private let currencyLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -74,20 +67,16 @@ final class CurrencyDetailViewController: UIViewController {
     }
     
     func setupUI() {
-        view.addSubview(closeButton)
+        //view.addSubview(closeButton)
         view.addSubview(topStack)
         view.addSubview(detailStack)
         NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            closeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
             topStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             topStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             detailStack.topAnchor.constraint(equalTo: topStack.safeAreaLayoutGuide.bottomAnchor, constant: 20),
             detailStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             detailStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
-        // Close button behavior
-        closeButton.addTarget(self, action: #selector(closeModal), for: .touchUpInside)
     }
     
     func configureViewWithCurrency() {

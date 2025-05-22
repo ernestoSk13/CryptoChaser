@@ -32,6 +32,33 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
         return view
     }()
     
+    var menu: UIMenu {
+        let currentSelection = viewModel.sortingOption
+        let ascendingOrder = viewModel.ascendingOrder
+        
+        let ascendingImage = UIImage(systemName: ascendingOrder ? "chevron.up" : "chevron.down")
+        let sortByRank = UIAction(title: "Rank", image: currentSelection == .marketCapRank ? ascendingImage : nil) { action in
+            self.viewModel.sortCurrencies(.marketCapRank)
+            self.tableView.reloadData()
+            self.updateMenu()
+        }
+        
+        let sortByName = UIAction(title: "Name", image: currentSelection == .name ? ascendingImage : nil) { action in
+            self.viewModel.sortCurrencies(.name)
+            self.tableView.reloadData()
+            self.updateMenu()
+        }
+        
+        let sortByPrice = UIAction(title: "Price", image: currentSelection == .price ? ascendingImage : nil) { action in
+            self.viewModel.sortCurrencies(.price)
+            self.tableView.reloadData()
+            self.updateMenu()
+        }
+        
+        return UIMenu(title: "", options: [.singleSelection], children: [sortByRank, sortByName, sortByPrice])
+    }
+    
+    
     private let errorSnackbar = SnackbarView()
     
     init(viewModel: CCMainListViewModel) {
@@ -83,6 +110,13 @@ final class CCMainListViewController: UIViewController, UITableViewDataSource, U
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        // Add sort button
+        let button = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), primaryAction: nil, menu: menu)
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = button
+    }
+    
+    func updateMenu() {
+        navigationController?.navigationBar.topItem?.rightBarButtonItem?.menu = menu
     }
     
     func setupSearchController() {
