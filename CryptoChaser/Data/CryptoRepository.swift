@@ -19,7 +19,7 @@ protocol CryptoRepository {
 
 final class MockCryptoRepository: CryptoRepository {
     let mockService: CryptoServiceStub = CryptoServiceStub()
-    private let local: CurrencyCoreDataStorage = CurrencyCoreDataStorage()
+    private let local: CurrencyCoreDataStorage = CurrencyCoreDataStorage(coreDataManager: MockCoreDataManager.shared)
     
     func loadLocalCoins() throws -> [Currency] {
         let localElements = try local.fetchAllCoins()
@@ -27,7 +27,9 @@ final class MockCryptoRepository: CryptoRepository {
     }
     
     func fetchCoins() async throws -> [Currency] {
-        return try await mockService.fetchCoins()
+        let coins = try await mockService.fetchCoins()
+        try await local.saveCurrencies(coins)
+        return coins
     }
     
     func searchCurrency(name: String) throws -> [Currency] {
