@@ -8,7 +8,11 @@
 import Foundation
 
 protocol CryptoRepository {
+    /// Makes a fetch to Core Data and returns an array of transformed Currency objects.
+    /// - Returns: an Array of Currency objects.
     func loadLocalCoins() throws -> [Currency]
+    /// Makes a fetch to the remote server and returns an array of Currency objects.
+    /// - Returns:an Array of Currency objects.
     func fetchCoins() async throws -> [Currency]
     func searchCurrency(name: String) throws -> [Currency]
 }

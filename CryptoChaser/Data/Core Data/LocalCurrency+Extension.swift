@@ -23,7 +23,7 @@ extension LocalCurrency {
                         image: image,
                         currentPrice: self.currentPrice,
                         marketCap: self.marketCap,
-                        marketCapRank: self.marketCapRank,
+                        marketCapRank: Int(self.marketCapRank),
                         totalVolume: self.totalVolume,
                         high24: self.high24,
                         low24: self.low24,
@@ -44,7 +44,7 @@ extension Currency {
         localCurrency.low24 = self.low24 ?? 0
         localCurrency.totalVolume = self.totalVolume ?? 0
         localCurrency.marketCap = self.marketCap ?? 0
-        localCurrency.marketCapRank = self.marketCapRank ?? 0
+        localCurrency.marketCapRank = Int32(self.marketCapRank ?? 0)
         localCurrency.priceChange24h = self.priceChange24h ?? 0
         localCurrency.symbol = self.symbol
         return localCurrency

@@ -14,7 +14,7 @@ struct Currency: Codable {
     let image: URL
     let currentPrice: Double
     let marketCap: Double?
-    let marketCapRank: Double?
+    let marketCapRank: Int?
     let totalVolume: Double?
     let high24: Double?
     let low24: Double?
@@ -25,7 +25,7 @@ struct Currency: Codable {
         return Date.dateFromString(lastUpdated)
     }
     
-    init(id: String, symbol: String, name: String, image: URL, currentPrice: Double, marketCap: Double?, marketCapRank: Double?, totalVolume: Double?, high24: Double?, low24: Double?, priceChange24h: Double?, lastUpdated: String) {
+    init(id: String, symbol: String, name: String, image: URL, currentPrice: Double, marketCap: Double?, marketCapRank: Int?, totalVolume: Double?, high24: Double?, low24: Double?, priceChange24h: Double?, lastUpdated: String) {
         self.id = id
         self.symbol = symbol
         self.name = name
