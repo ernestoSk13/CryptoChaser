@@ -15,6 +15,9 @@ final class CurrencyCoreDataStorage {
         self.coreDataManager = coreDataManager
     }
     
+    /// Makes a fetch request for a specific currency using it's ID. If it's not found returns nil
+    /// - Parameter id: a String that represents the currency identifier
+    /// - Returns: an optional LocalCurrency entity
     func fetchCurrency(id: String) throws -> LocalCurrency? {
         let request: NSFetchRequest = LocalCurrency.fetchRequest()
         let sort = NSSortDescriptor.init(key: "marketCapRank", ascending: true)
@@ -24,6 +27,9 @@ final class CurrencyCoreDataStorage {
         return currencies.first
     }
     
+    /// Makes a fetch request with a query sent from the search controller. the results are compared with the LocalCurrency name
+    /// - Parameter query: a String that represents the name query
+    /// - Returns: a NSFetchRequest that will be used view the context
     func fetchCoinsRequest(_ query: String = "") -> NSFetchRequest<LocalCurrency> {
         let request: NSFetchRequest = LocalCurrency.fetchRequest()
         let sort = NSSortDescriptor.init(key: "marketCapRank", ascending: true)
@@ -34,11 +40,16 @@ final class CurrencyCoreDataStorage {
         return request
     }
     
+    /// Makes a general search for all the LocalCurrency objects.
+    /// - Returns: an Array of LocalCurrency objects
     func fetchAllCoins() throws -> [LocalCurrency] {
         let request = fetchCoinsRequest()
         return try coreDataManager.performFetchRequest(request)
     }
     
+    /// Makes a fetch requests with a name query. Throws an error if the fetch fails.
+    /// - Parameter name: a String that represents the name query
+    /// - Returns: an Array of LocalCurrency objects
     func searchCurrency(name: String) throws -> [LocalCurrency] {
         let request = fetchCoinsRequest(name)
         let viewContext = coreDataManager.context
@@ -46,6 +57,8 @@ final class CurrencyCoreDataStorage {
         return currencies
     }
     
+    /// Makes an insertion or an update to the `LocalCurrency` objects from the remote Currency objects. It is done in a background context asynchronously
+    /// - Parameter currencies: an Array of `Currency` objects
     func saveCurrencies(_ currencies: [Currency]) async throws {
         let viewContext = coreDataManager.context
         let bgContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
