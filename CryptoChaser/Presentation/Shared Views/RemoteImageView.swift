@@ -12,17 +12,15 @@ struct RemoteImageView: View {
     let url: URL
     
     var body: some View {
-        WebImage(url: url) { image in
+        AsyncImage(url: url, content: { image in
             image
                 .resizable()
-                
-        } placeholder: {
+        }, placeholder: {
             Image(systemName: "bitcoinsign.circle")
                 .resizable()
-        }
-        .indicator(.activity)
-        .transition(.fade(duration: 0.3))
+        })
         .scaledToFit()
+        .clipShape(Circle())
     }
 }
 
