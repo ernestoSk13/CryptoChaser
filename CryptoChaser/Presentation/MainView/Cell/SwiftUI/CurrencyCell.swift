@@ -34,6 +34,7 @@ struct CurrencyCell: View {
                 .bold()
                 
         }
+        .id(viewModel.currencyIdentifier)
         .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityElement(children: .ignore)
         .accessibilityHidden(true)

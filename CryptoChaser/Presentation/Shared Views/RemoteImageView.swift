@@ -9,17 +9,29 @@ import SwiftUI
 
 struct RemoteImageView: View {
     let url: URL
+    @State private var image: UIImage?
+    @Environment(\.imageLoader) private var imageLoader
+    var largeSize: Bool = false
     
     var body: some View {
-        AsyncImage(url: url, content: { image in
-            image
-                .resizable()
-        }, placeholder: {
-            Image(systemName: "bitcoinsign.circle")
-                .resizable()
-        })
-        .scaledToFit()
-        .clipShape(Circle())
+        ZStack {
+            if let unwrappedImage = image {
+                Image(uiImage: unwrappedImage)
+                    .resizable()
+            } else {
+                ProgressView()
+            }
+        }.task {
+            await loadImage()
+        }
+    }
+    
+    func loadImage() async {
+        do {
+            image = try await imageLoader.fetch(url)
+        } catch {
+            print(error)
+        }
     }
 }
 
