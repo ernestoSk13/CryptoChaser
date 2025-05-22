@@ -8,10 +8,11 @@
 import Foundation
 import CoreData
 
+
 final class CurrencyCoreDataStorage {
-    private let coreDataManager: CoreDataManager
+    private let coreDataManager: CoreDataStack
     
-    init(coreDataManager: CoreDataManager = CoreDataManager.shared) {
+    init(coreDataManager: CoreDataStack = CoreDataManager.shared) {
         self.coreDataManager = coreDataManager
     }
     

@@ -31,7 +31,7 @@ struct CCMainListViewModelTests {
                                             searchUseCase: searchUseCase) { _ in
             
         }
-        
+        try await viewModel.fetchCoins()
         viewModel.searchCurrency(name: "Hedera")
         #expect(!viewModel.coins.isEmpty)
         #expect(viewModel.coins.count == 1)
