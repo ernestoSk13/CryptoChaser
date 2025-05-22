@@ -16,6 +16,7 @@ class RemoteCryptoService: CryptoService {
     #endif
     
     
+    /// The endpoint that contains all the information to make a request to the server
     let fetchCoinsEnpoint = FetchCoinsEndpoint()
     
     func fetchCoins() async throws -> [Currency] {

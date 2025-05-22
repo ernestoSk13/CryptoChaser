@@ -17,6 +17,8 @@ enum NetworkError: Error {
 
 protocol CryptoService {
     var session: URLSession { get set }
+    /// Makes a fetch to the server to get an Array of Currency objects
+    /// - Returns: An Array of Currency objects.
     func fetchCoins() async throws -> [Currency]
 }
 

@@ -8,6 +8,9 @@
 import Foundation
 
 protocol SearchCurrencyUseCase {
+    /// Executes a search query to the CryptoRepository
+    /// - Parameter query: a String that represents a name query
+    /// - Returns: an Array of Currency objects
     func execute(query: String) throws -> [Currency]
 }
 

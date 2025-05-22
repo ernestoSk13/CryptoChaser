@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A struct that defines an Endpoint to fetch coins.
 struct FetchCoinsEndpoint {
     private let endpointPath: String = "/coins/markets"
     private var queryItems: [URLQueryItem] = [
