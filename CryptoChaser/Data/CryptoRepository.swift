@@ -8,12 +8,10 @@
 import Foundation
 
 protocol CryptoRepository {
-    /// Makes a fetch to Core Data and returns an array of transformed Currency objects.
-    /// - Returns: an Array of Currency objects.
-    func loadLocalCoins() throws -> [Currency]
     /// Makes a fetch to the remote server and returns an array of Currency objects.
+    /// - Parameter cached: a closure that will return the Core Data objects stored.
     /// - Returns:an Array of Currency objects.
-    func fetchCoins() async throws -> [Currency]
+    func fetchCoins(cached: @escaping (([Currency]) -> ())) async throws -> [Currency]
     func searchCurrency(name: String) throws -> [Currency]
 }
 
@@ -21,12 +19,16 @@ final class MockCryptoRepository: CryptoRepository {
     let mockService: CryptoServiceStub = CryptoServiceStub()
     private let local: CurrencyCoreDataStorage = CurrencyCoreDataStorage(coreDataManager: MockCoreDataManager.shared)
     
-    func loadLocalCoins() throws -> [Currency] {
+    /// Makes a fetch to Core Data and returns an array of transformed Currency objects.
+    /// - Returns: an Array of Currency objects.
+    private func loadLocalCoins() throws -> [Currency] {
         let localElements = try local.fetchAllCoins()
         return localElements.map { $0.toRemoteModel() }
     }
     
-    func fetchCoins() async throws -> [Currency] {
+    func fetchCoins(cached: @escaping (([Currency]) -> ())) async throws -> [Currency] {
+        let localCoins = try loadLocalCoins()
+        cached(localCoins)
         let coins = try await mockService.fetchCoins()
         try await local.saveCurrencies(coins)
         return coins
@@ -47,12 +49,16 @@ final class DefaultCryptoRepository: CryptoRepository {
         self.local = local
     }
     
-    func loadLocalCoins() throws -> [Currency] {
+    /// Makes a fetch to Core Data and returns an array of transformed Currency objects.
+    /// - Returns: an Array of Currency objects.
+    private func loadLocalCoins() throws -> [Currency] {
         let localElements = try local.fetchAllCoins()
         return localElements.map { $0.toRemoteModel() }
     }
     
-    func fetchCoins() async throws -> [Currency] {
+    func fetchCoins(cached: @escaping (([Currency]) -> ())) async throws -> [Currency] {
+        let localCoins = try loadLocalCoins()
+        cached(localCoins)
         let remoteCoins = try await service.fetchCoins()
         try await local.saveCurrencies(remoteCoins)
         return remoteCoins

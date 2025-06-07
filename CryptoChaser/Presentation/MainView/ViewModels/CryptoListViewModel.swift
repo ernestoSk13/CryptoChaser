@@ -20,10 +20,7 @@ enum SortingOption: String, CaseIterable {
 }
 
 final class CryptoListViewModel: ObservableObject {
-    // Use case for fetching an array of currencies
-    private let fetchUseCase: FetchCurrencyUseCase
-    // User case for searching a currency by it's name
-    private let searchUseCase: SearchCurrencyUseCase
+    private let repository: CryptoRepository
     @Published private(set) var coins: [Currency] = []
     @Published private(set) var errorString: String = ""
     private let logger = Logger()
@@ -32,37 +29,33 @@ final class CryptoListViewModel: ObservableObject {
     @Published var sortingOption: SortingOption = .marketCapRank
     @Published var ascendingOrder: Bool = true
     
-    init(fetchUseCase: FetchCurrencyUseCase, searchUseCase: SearchCurrencyUseCase, navigationHandler: @escaping (Currency) -> Void) {
-        self.fetchUseCase = fetchUseCase
-        self.searchUseCase = searchUseCase
+    init(repository: CryptoRepository, navigationHandler: @escaping (Currency) -> Void) {
         self.navigationHandler = navigationHandler
+        self.repository = repository
     }
     
     ///  Fetch coins using the `fetchUseCase`, returns an array of `Currency`. Throws an error if fails. Once the concurrent function finishes it returns to the main actor without compromising the UI
     @MainActor
     func fetchCoins() async throws {
         do {
-            // Load locally first
-            let localCoins = try fetchUseCase.fetchLocal()
-            self.coins = localCoins
-            sortCurrencies()
-            //After fetching from core data, fetch from the service
-            let coins = try await fetchUseCase.fetchRemote()
-            self.coins = coins
-            sortCurrencies()
+            let coins = try await repository.fetchCoins { localCoins in
+                self.coins = self.sort(currencies: localCoins)
+            }
+            self.coins = sort(currencies: coins)
         } catch let localError as CoreDataError {
             errorString = "There was an error fetching the coins, try again later."
             throw CoinFetchError.networkError(localError)
-        } catch let networkError  {
+        } catch let networkError {
             errorString = "There was an error fetching the coins, try again later."
             throw CoinFetchError.networkError(networkError)
         }
     }
     
-    func sortCurrencies(_ sortedOption: SortingOption? = nil) {
+    func sort(currencies: [Currency], _ sortedOption: SortingOption? = nil) -> [Currency] {
         ascendingOrder = sortedOption == sortingOption && sortedOption != nil ? !ascendingOrder : ascendingOrder
         sortingOption = sortedOption ?? self.sortingOption
-        coins.sort(by: { c1, c2 in
+        var sorted = currencies
+        sorted.sort(by: { c1, c2 in
             switch sortingOption {
             case .name:
                 return ascendingOrder ? c1.name < c2.name : c1.name > c2.name
@@ -71,11 +64,17 @@ final class CryptoListViewModel: ObservableObject {
             case .marketCapRank:
                 return ascendingOrder ? c1.marketCapRank ?? 0 < c2.marketCapRank ?? 0 : c1.marketCapRank ?? 0 > c2.marketCapRank ?? 0
             }})
+        
+        return sorted
+    }
+    
+    func sortCurrencies( _ sortedOption: SortingOption? = nil) {
+        self.coins = sort(currencies: coins, sortedOption)
     }
     
     func searchCurrency(name: String) {
         do {
-            let coins = try searchUseCase.execute(query: name)
+            let coins = try repository.searchCurrency(name: name)
             self.coins = coins
         } catch {
             debugPrint("Error searching currency")
