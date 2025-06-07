@@ -21,7 +21,7 @@ final class DefaultDependencyContainer: DependencyContainer {
         let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
         let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
         let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase, navigationHandler: navigationHandler)
-        return CCMainListViewController(viewModel: viewModel)
+        return CryptoListViewController(viewModel: viewModel)
     }
     
     func makeCurrencyDetailScreen(currency: Currency) -> UIViewController {
@@ -32,12 +32,11 @@ final class DefaultDependencyContainer: DependencyContainer {
 
 final class MockedDependencyContainer: DependencyContainer {
     func makeCurrentListScreen(navigationHandler: @escaping (Currency) -> ()) -> UIViewController {
-        let dataSource = CryptoServiceStub()
         let repository = MockCryptoRepository()
         let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
         let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
         let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase, navigationHandler: navigationHandler)
-        return CCMainListViewController(viewModel: viewModel)
+        return CryptoListViewController(viewModel: viewModel)
     }
     
     func makeCurrencyDetailScreen(currency: Currency) -> UIViewController {
