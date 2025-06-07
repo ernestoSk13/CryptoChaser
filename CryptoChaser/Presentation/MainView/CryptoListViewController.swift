@@ -16,6 +16,7 @@ class CryptoListViewController: UIViewController {
     // Content configuration to handle different content states
     var loadingConfig = UIContentUnavailableConfiguration.loading()
     var emptyConfig = UIContentUnavailableConfiguration.empty()
+    var noResultsConfig = UIContentUnavailableConfiguration.search()
 
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -125,6 +126,13 @@ class CryptoListViewController: UIViewController {
         self.contentUnavailableConfiguration = emptyConfig
     }
     
+    func showNoResultsState() {
+        noResultsConfig.text = "No Results Found"
+        guard let searchText = searchController.searchBar.text else { return }
+        noResultsConfig.secondaryText = "No results for '\(searchText)'"
+        self.contentUnavailableConfiguration = noResultsConfig
+    }
+    
     /// Calls the view model's concurrent function to request the currency list, if the call returns error it shows the error state view with a reload button.
     func fetchCoins() {
         Task {
@@ -180,6 +188,12 @@ class CryptoListViewController: UIViewController {
 extension CryptoListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty && viewModel.coins.count == 0 {
+            showNoResultsState()
+        } else {
+            self.contentUnavailableConfiguration = nil
+        }
+        
         return viewModel.coins.count
     }
     
@@ -220,8 +234,6 @@ extension CryptoListViewController: UICollectionViewDataSource, UICollectionView
 
 extension CryptoListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // Wait until there are at least 3 characters to make the search
-        guard searchText.count >= 3 else { return }
         searchTask?.cancel()
         
         let task = DispatchWorkItem { [weak self] in
