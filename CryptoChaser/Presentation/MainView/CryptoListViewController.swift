@@ -34,6 +34,7 @@ class CryptoListViewController: UIViewController {
         flowLayout.minimumLineSpacing = Constants.defaultPadding
         flowLayout.minimumInteritemSpacing = Constants.defaultPadding
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.backgroundColor = .clear
         collectionView.contentInset = .init(top: 12, left: 12, bottom: 12, right: 12)
         collectionView.register(CurrencyCellView.self, forCellWithReuseIdentifier: CurrencyCellView.identifier)
         collectionView.delegate = self
@@ -92,7 +93,7 @@ class CryptoListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(named: "main")
         title = "CryptoChaser"
         setupUI()
         setupSearchController()
@@ -113,7 +114,7 @@ class CryptoListViewController: UIViewController {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
@@ -240,7 +241,7 @@ extension CryptoListViewController: UICollectionViewDelegate, UICollectionViewDe
     
     //MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = collectionView.frame.width
+        let size = UIDevice.current.userInterfaceIdiom == .pad ? collectionView.frame.width / 3 : collectionView.frame.width
         return CGSize(width: size - (Constants.defaultPadding * 2), height: 128)
     }
     
