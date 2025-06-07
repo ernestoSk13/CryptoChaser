@@ -20,7 +20,7 @@ final class CurrencyCoreDataStorage {
     /// - Parameter id: a String that represents the currency identifier
     /// - Returns: an optional LocalCurrency entity
     func fetchCurrency(id: String) throws -> LocalCurrency? {
-        let request: NSFetchRequest = LocalCurrency.fetchRequest()
+        let request: NSFetchRequest = NSFetchRequest<LocalCurrency>(entityName: "LocalCurrency")
         let sort = NSSortDescriptor.init(key: "marketCapRank", ascending: true)
         request.sortDescriptors = [sort]
         request.predicate = NSPredicate(format: "id == %@", id)
@@ -32,7 +32,8 @@ final class CurrencyCoreDataStorage {
     /// - Parameter query: a String that represents the name query
     /// - Returns: a NSFetchRequest that will be used view the context
     func fetchCoinsRequest(_ query: String = "") -> NSFetchRequest<LocalCurrency> {
-        let request: NSFetchRequest = LocalCurrency.fetchRequest()
+        let request: NSFetchRequest = NSFetchRequest<LocalCurrency>(entityName: "LocalCurrency")
+        request.fetchLimit = 20
         let sort = NSSortDescriptor.init(key: "marketCapRank", ascending: true)
         request.sortDescriptors = [sort]
         if !query.isEmpty {
@@ -67,7 +68,7 @@ final class CurrencyCoreDataStorage {
         
         try await bgContext.perform {
             for currency in currencies {
-                let fetchRequest: NSFetchRequest<LocalCurrency> = LocalCurrency.fetchRequest()
+                let fetchRequest: NSFetchRequest<LocalCurrency> = NSFetchRequest<LocalCurrency>(entityName: "LocalCurrency")
                 fetchRequest.predicate = NSPredicate(format: "id == %@", currency.id)
                 if let existing = try? bgContext.fetch(fetchRequest).first {
                     existing.id = currency.id

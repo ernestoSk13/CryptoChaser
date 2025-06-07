@@ -16,8 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let isUITest = ProcessInfo.processInfo.environment["UITEST_MODE"] == "1"
-        container = isUITest ? MockedDependencyContainer() : DefaultDependencyContainer()
+        let mockEnabled = ProcessInfo.processInfo.environment["TEST_MODE"] == "1"
+        container = mockEnabled ? MockedDependencyContainer() : DefaultDependencyContainer()
         let coordinator = AppCoordinator(window: window, container: container)
         self.coordinator = coordinator
         coordinator.start()

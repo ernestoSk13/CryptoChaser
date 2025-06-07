@@ -27,6 +27,7 @@
 		6E7AE3EF2DDD432800CAE565 /* CryptoChaser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoChaser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E7AE4052DDD432900CAE565 /* CryptoChaserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoChaserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E7AE40F2DDD432900CAE565 /* CryptoChaserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoChaserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EB694CC2DF4FB1700CDBF3F /* CryptoChaserTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CryptoChaserTests.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -96,6 +97,7 @@
 		6E7AE3E62DDD432800CAE565 = {
 			isa = PBXGroup;
 			children = (
+				6EB694CC2DF4FB1700CDBF3F /* CryptoChaserTests.xctestplan */,
 				6E7AE3F12DDD432800CAE565 /* CryptoChaser */,
 				6E7AE4082DDD432900CAE565 /* CryptoChaserTests */,
 				6E7AE4122DDD432900CAE565 /* CryptoChaserUITests */,
