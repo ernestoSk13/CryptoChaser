@@ -13,10 +13,7 @@ struct CCMainListViewModelTests {
     let repository = MockCryptoRepository()
     
     @Test func testFetchCoinsReturnArrayOfCurrencies() async throws {
-        let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
-        let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
-        let viewModel = CryptoListViewModel(fetchUseCase: fetchUseCase,
-                                            searchUseCase: searchUseCase) { _ in
+        let viewModel = CryptoListViewModel(repository: repository) { _ in
             
         }
         try await viewModel.fetchCoins()
@@ -25,10 +22,7 @@ struct CCMainListViewModelTests {
     }
     
     @Test func testSearchCoinsReturnASingleElementArray() async throws {
-        let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
-        let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
-        let viewModel = CryptoListViewModel(fetchUseCase: fetchUseCase,
-                                            searchUseCase: searchUseCase) { _ in
+        let viewModel = CryptoListViewModel(repository: repository) { _ in
             
         }
         try await viewModel.fetchCoins()
@@ -37,5 +31,4 @@ struct CCMainListViewModelTests {
         #expect(viewModel.coins.count == 1)
         #expect(viewModel.coins.first?.id == "hedera-hashgraph")
     }
-
 }

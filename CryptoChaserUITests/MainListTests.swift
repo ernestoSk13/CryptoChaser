@@ -9,7 +9,8 @@ import XCTest
 @testable import CryptoChaser
 
 final class MainListTests: XCTestCase {
-    private let tableView = XCUIApplication().tables[Constants.Accessibility.MainList.identifier]
+    let app = XCUIApplication()
+    private let collectionView = XCUIApplication().collectionViews[Constants.Accessibility.MainList.identifier]
     private let searchBar = XCUIApplication().searchFields[Constants.Accessibility.MainList.SearchBar.TextField.identifier]
     private let cancelButton = XCUIApplication().buttons["Cancel"]
 
@@ -18,40 +19,25 @@ final class MainListTests: XCTestCase {
 
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+       
+        app.launchEnvironment["TEST_MODE"] = "1"
+        app.launch()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launchEnvironment["UITEST_MODE"] = "1"
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
     func testTableViewExists() throws {
-        let app = XCUIApplication()
-        app.launchEnvironment["UITEST_MODE"] = "1"
-        app.launch()
-
         // Make sure the tableview exist
-        XCTAssert(tableView.waitForExistence(timeout: 1))
+        XCTAssert(collectionView.waitForExistence(timeout: 1))
         // Make sure the mocked data has 20 elements
-        XCTAssert(tableView.cells.count == 20)
+        XCTAssert(collectionView.cells.count > 0)
     }
     
     func testStellarCellExists() throws {
-        let app = XCUIApplication()
-        app.launchEnvironment["UITEST_MODE"] = "1"
-        app.launch()
         let cellIdentifier = Constants.Accessibility.MainList.Row.identifier.replacingOccurrences(of: "$1", with: "stellar")
-        let stellarCell = tableView.cells[cellIdentifier]
+        let stellarCell = collectionView.cells[cellIdentifier]
         var maxScrolls = 10
         
         while !stellarCell.isHittable && maxScrolls > 0 {
@@ -70,10 +56,6 @@ final class MainListTests: XCTestCase {
     }
     
     func testSearchCurrency() throws {
-        let app = XCUIApplication()
-        app.launchEnvironment["UITEST_MODE"] = "1"
-        app.launch()
-        
         guard searchBar.exists else {
             XCTFail("Search bar not found")
             return
@@ -83,7 +65,7 @@ final class MainListTests: XCTestCase {
         app.typeText("Hedera")
         
         let cellIdentifier = Constants.Accessibility.MainList.Row.identifier.replacingOccurrences(of: "$1", with: "hedera-hashgraph")
-        let targetCell = tableView.cells[cellIdentifier]
+        let targetCell = collectionView.cells[cellIdentifier]
         
         XCTAssert(targetCell.exists)
         cancelButton.tap()

@@ -105,8 +105,9 @@ final class CurrencyCellView: UICollectionViewCell {
         lastUpdated.text = "Last update: \(viewModel.lastUpdated)"
         price.text = viewModel.price
         // Accessibility
-        contentView.accessibilityLabel = viewModel.name
-        contentView.accessibilityValue = viewModel.price
-        contentView.accessibilityIdentifier = Constants.Accessibility.MainList.Row.identifier.replacingOccurrences(of: "$1", with: viewModel.currencyIdentifier)
+        self.isAccessibilityElement = true
+        self.accessibilityLabel = viewModel.name
+        self.accessibilityValue = viewModel.price
+        self.accessibilityIdentifier = Constants.Accessibility.MainList.Row.identifier.replacingOccurrences(of: "$1", with: viewModel.currencyIdentifier)
     }
 }

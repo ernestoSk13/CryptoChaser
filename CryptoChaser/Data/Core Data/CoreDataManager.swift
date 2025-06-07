@@ -26,15 +26,14 @@ final class MockCoreDataManager: CoreDataStack {
     static let shared = MockCoreDataManager()
     private let logger = Logger()
     internal lazy var persistentContainer: NSPersistentContainer = {
-        let description = NSPersistentStoreDescription()
-        description.url = URL(fileURLWithPath: "/dev/null")
         let container = NSPersistentContainer(name: "DataModel")
-        container.persistentStoreDescriptions = [description]
-        container.loadPersistentStores { _, error in
+        container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        container.loadPersistentStores(completionHandler: { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
-        }
+        })
+        
         return container
     }()
     
