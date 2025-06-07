@@ -36,7 +36,7 @@ final class CurrencyCoreDataStorage {
         let sort = NSSortDescriptor.init(key: "marketCapRank", ascending: true)
         request.sortDescriptors = [sort]
         if !query.isEmpty {
-            request.predicate = NSPredicate(format: "name CONTAINS[c] %@", query)
+            request.predicate = NSPredicate(format: "name BEGINSWITH[c] %@", query)
         }
         return request
     }
