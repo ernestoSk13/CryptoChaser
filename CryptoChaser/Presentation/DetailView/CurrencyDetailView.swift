@@ -32,6 +32,9 @@ struct CurrencyDetailView: View {
                     }
                 }
             }.padding()
+            .accessibilityLabel(Constants.Accessibility.DetailView.Price.label)
+            .accessibilityValue(viewModel.currentPrice)
+            .accessibilityIdentifier(Constants.Accessibility.DetailView.Price.identifier)
     }
     
     var body: some View {
@@ -39,12 +42,16 @@ struct CurrencyDetailView: View {
                 RemoteImageView(url: viewModel.imageUrl)
                     .frame(width: 120, height: 120)
                     .padding(12)
+                    .accessibilityIdentifier(Constants.Accessibility.DetailView.Logo.identifier)
+                    .accessibilityLabel(Constants.Accessibility.DetailView.Logo.label)
                 priceLabel
+                    
                 ScrollView {
                     VStack(alignment: .leading) {
                         ForEach(viewModel.properties) { property in
                             CurrencyPropertyView(title: property.title,
                                                  value: property.value)
+                            .accessibilityIdentifier(Constants.Accessibility.DetailView.Property.identifier.replacingOccurrences(of: "%@", with: property.id))
                             Divider()
                         }
                         Spacer()
@@ -80,7 +87,9 @@ struct CurrencyPropertyView: View {
                 .font(.subheadline)
                 .multilineTextAlignment(.trailing)
         }.padding()
-            .transition(.opacity)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(title)
+            .accessibilityValue(value)
     }
 }
 

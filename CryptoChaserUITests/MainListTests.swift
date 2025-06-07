@@ -56,19 +56,53 @@ final class MainListTests: XCTestCase {
     }
     
     func testSearchCurrency() throws {
-        guard searchBar.exists else {
-            XCTFail("Search bar not found")
-            return
-        }
-        
-        searchBar.tap()
-        app.typeText("Hedera")
-        
-        let cellIdentifier = Constants.Accessibility.MainList.Row.identifier.replacingOccurrences(of: "$1", with: "hedera-hashgraph")
-        let targetCell = collectionView.cells[cellIdentifier]
+        let targetCell = findCellWith(query: "Hedera")
         
         XCTAssert(targetCell.exists)
         cancelButton.tap()
+    }
+    
+    func testCurrencyDetailViewAppears() throws {
+        let cell = findCellWith(query: "Bitcoin")
+        XCTAssert(cell.exists)
+        cell.tap()
+        let logoView = app.images[Constants.Accessibility.DetailView.Logo.identifier]
+        XCTAssert(logoView.exists)
+        let priceView = app.staticTexts[Constants.Accessibility.DetailView.Price.identifier]
+        XCTAssert(priceView.exists)
+        guard let accessibilityValue = priceView.value as? String else {
+            XCTFail("Price view accessibility value is invalid")
+            return
+        }
+        XCTAssert(accessibilityValue == "$106,694.00")
+        // Properties section
+        let rankingView = app.staticTexts[Constants.Accessibility.DetailView.Property.identifier.replacingOccurrences(of: "%@", with: "ranking")]
+        XCTAssert(rankingView.exists)
+        guard let rankingValue = rankingView.value as? String else {
+            XCTFail("Ranking view accessibility value is invalid")
+            return
+        }
+        XCTAssert(rankingValue == "#1")
+        let totalVolumeView = app.staticTexts[Constants.Accessibility.DetailView.Property.identifier.replacingOccurrences(of: "%@", with: "total_volume")]
+        XCTAssert(totalVolumeView.exists)
+        guard let totalVolumeValue = totalVolumeView.value as? String else {
+            XCTFail("Total Volume view accessibility value is invalid")
+            return
+        }
+        XCTAssert(totalVolumeValue == "35.54B")
+    }
+    
+    private func findCellWith(query: String) -> XCUIElement {
+        guard searchBar.exists else {
+            XCTFail("Search bar not found")
+            fatalError("Couldn't find cell named '\(query)'")
+        }
+        
+        searchBar.tap()
+        app.typeText(query)
+        let targetCell = collectionView.cells[query]
+        
+        return targetCell
     }
     
     func testLaunchPerformance() throws {

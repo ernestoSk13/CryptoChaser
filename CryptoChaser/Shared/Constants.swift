@@ -32,6 +32,22 @@ enum Constants {
                 }
             }
         }
+        
+        enum DetailView {
+            enum Logo {
+                static let label = "Currency Logo"
+                static let identifier = "currency-detail-view-image"
+            }
+            
+            enum Price {
+                static let label = "Current Price"
+                static let identifier = "currency-detail-view-price-label"
+            }
+            
+            enum Property {
+                static let identifier = "currency-detail-view-%@"
+            }
+        }
     }
     
     static let defaultPadding: CGFloat = 12

@@ -37,6 +37,6 @@ final class MockedDependencyContainer: DependencyContainer {
     
     func makeCurrencyDetailScreen(currency: Currency) -> UIViewController {
         let viewModel = CurrencyDetailViewModel(currency: currency)
-        return CurrencyDetailViewController(viewModel: viewModel)
+        return CurrencyDetailView.makeCurrencyDetailView(viewModel: viewModel)
     }
 }
