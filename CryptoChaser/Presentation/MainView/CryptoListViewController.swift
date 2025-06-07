@@ -40,6 +40,7 @@ class CryptoListViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
+        
         return collectionView
     }()
     
@@ -141,6 +142,17 @@ class CryptoListViewController: UIViewController {
         emptyConfig.image = UIImage(systemName: "exclamationmark.warninglight")
         emptyConfig.text = "There was an error fetching from the server"
         emptyConfig.secondaryText = "Pull to refresh and try again"
+        var retryButton = UIButton.Configuration.borderless()
+        retryButton.title = "Try again"
+        emptyConfig.button = retryButton
+        emptyConfig.buttonProperties.primaryAction = UIAction.init(handler: { _ in
+            Task { [weak self] in
+                guard let self = self else { return }
+                self.fetchCoins()
+            }
+        })
+        
+        
         self.contentUnavailableConfiguration = emptyConfig
     }
     
@@ -173,7 +185,6 @@ class CryptoListViewController: UIViewController {
             self?.hasAnimatedItems = true
         }
         applySnapshot()
-        contentUnavailableConfiguration = nil
     }
     
     func updateMenu() {
