@@ -7,10 +7,12 @@
 
 import Foundation
 import UIKit
+import Combine
 
 class CryptoListViewController: UIViewController {
     
     private let viewModel: CryptoListViewModel
+    private var subscriptions = Set<AnyCancellable>()
     private let reuseIdentifier = "CoinCell"
     private let refreshControl = UIRefreshControl()
     private let searchController: UISearchController = UISearchController(searchResultsController: nil)
@@ -96,6 +98,13 @@ class CryptoListViewController: UIViewController {
         setAccessibility()
         showLoadingState()
         fetchCoins()
+        viewModel.$coins
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] currencies in
+                if !currencies.isEmpty {
+                    self?.endRefreshing()
+                }
+        }.store(in: &subscriptions)
     }
     
     func setupUI() {
@@ -147,7 +156,6 @@ class CryptoListViewController: UIViewController {
         Task {
             do {
                 try await viewModel.fetchCoins()
-                endRefreshing()
             } catch {
                 if viewModel.coins.isEmpty {
                     showEmptyState()
