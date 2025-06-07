@@ -38,7 +38,8 @@ final class AppCoordinator {
         let detailViewController = container.makeCurrencyDetailScreen(currency: currency)
         // If ipad show modally
         if (UIDevice().userInterfaceIdiom == .pad ) {
-            navigationController?.present(detailViewController, animated: true)
+            let detailNavigationVC = UINavigationController(rootViewController: detailViewController)
+            navigationController?.present(detailNavigationVC, animated: true)
         } else {
             navigationController?.pushViewController(detailViewController, animated: true)
         }

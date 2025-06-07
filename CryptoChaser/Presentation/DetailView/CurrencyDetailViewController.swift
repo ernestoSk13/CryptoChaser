@@ -14,7 +14,6 @@ final class CurrencyDetailViewController: UIViewController {
     private let viewModel: CurrencyDetailViewModel
     private let viewIdentifier = "detail_view"
     
-    
     private lazy var logoView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false

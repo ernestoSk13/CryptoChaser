@@ -77,10 +77,10 @@ final class CurrencyCellView: UICollectionViewCell {
             price.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
         
-        contentView.backgroundColor = UIColor.systemBackground
+        contentView.backgroundColor = UIColor(named: "secondaryBg")
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 7
-        contentView.layer.borderWidth = 1
+        contentView.layer.borderWidth = 0.3
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.masksToBounds = true
         self.layer.shadowColor = UIColor.gray.cgColor
@@ -100,8 +100,8 @@ final class CurrencyCellView: UICollectionViewCell {
                 imageView.image = UIImage(systemName: "bitcoinsign.ring.dashed")
             }
         }
-        title.text = viewModel.name
-        symbol.text = viewModel.symbol
+        title.text = viewModel.symbol
+        symbol.text = viewModel.name
         lastUpdated.text = "Last update: \(viewModel.lastUpdated)"
         price.text = viewModel.price
         // Accessibility
