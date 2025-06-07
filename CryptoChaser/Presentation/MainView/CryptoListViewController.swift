@@ -190,7 +190,7 @@ extension CryptoListViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let searchText = searchController.searchBar.text, !searchText.isEmpty && viewModel.coins.count == 0 {
             showNoResultsState()
-        } else {
+        } else if viewModel.coins.count > 0 {
             self.contentUnavailableConfiguration = nil
         }
         
