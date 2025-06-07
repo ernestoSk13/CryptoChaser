@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		6E7AE4F22DDDAE9D00CAE565 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6E7AE4F12DDDAE9D00CAE565 /* Lottie */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		6E7AE4062DDD432900CAE565 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -77,7 +73,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E7AE4F22DDDAE9D00CAE565 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +141,6 @@
 			);
 			name = CryptoChaser;
 			packageProductDependencies = (
-				6E7AE4F12DDDAE9D00CAE565 /* Lottie */,
 			);
 			productName = CryptoChaser;
 			productReference = 6E7AE3EF2DDD432800CAE565 /* CryptoChaser.app */;
@@ -231,7 +225,6 @@
 			mainGroup = 6E7AE3E62DDD432800CAE565;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				6E7AE4F02DDDAE9D00CAE565 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6E7AE3F02DDD432800CAE565 /* Products */;
@@ -596,25 +589,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		6E7AE4F02DDDAE9D00CAE565 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.5.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		6E7AE4F12DDDAE9D00CAE565 /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6E7AE4F02DDDAE9D00CAE565 /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6E7AE3E72DDD432800CAE565 /* Project object */;
 }

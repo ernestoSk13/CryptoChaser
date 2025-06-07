@@ -15,8 +15,8 @@ enum Constants {
     
     enum Accessibility {
         enum MainList {
-            static let label = "Currency Table View"
-            static let identifier = "main-table-view"
+            static let label = "Currency Collection View"
+            static let identifier = "main-collection-view"
             enum Row {
                 static let identifier = "CurrencyCell_$1"
                 static let value = "Currency price is $1"
@@ -24,13 +24,16 @@ enum Constants {
             enum SearchBar {
                 enum TextField {
                     static let label = "Search Bar"
-                    static let identifier = "main-table-view-search-bar"
+                    static let identifier = "main-collection-view-search-bar"
                 }
                 enum CancelButton {
                     static let label = "Cancel Button"
-                    static let identifier = "main-table-view-search-bar-cancel-button"
+                    static let identifier = "main-collection-view-search-bar-cancel-button"
                 }
             }
         }
     }
+    
+    static let defaultPadding: CGFloat = 12
+    static let cellSize: CGFloat = 12
 }

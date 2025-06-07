@@ -19,7 +19,7 @@ enum SortingOption: String, CaseIterable {
     case marketCapRank
 }
 
-final class CCMainListViewModel: ObservableObject {
+final class CryptoListViewModel: ObservableObject {
     // Use case for fetching an array of currencies
     private let fetchUseCase: FetchCurrencyUseCase
     // User case for searching a currency by it's name
@@ -57,7 +57,6 @@ final class CCMainListViewModel: ObservableObject {
             errorString = "There was an error fetching the coins, try again later."
             throw CoinFetchError.networkError(networkError)
         }
-        
     }
     
     func sortCurrencies(_ sortedOption: SortingOption? = nil) {
@@ -67,7 +66,7 @@ final class CCMainListViewModel: ObservableObject {
             switch sortingOption {
             case .name:
                 return ascendingOrder ? c1.name < c2.name : c1.name > c2.name
-            case .price:
+            case .price:    
                 return ascendingOrder ? c1.currentPrice < c2.currentPrice : c1.currentPrice > c2.currentPrice
             case .marketCapRank:
                 return ascendingOrder ? c1.marketCapRank ?? 0 < c2.marketCapRank ?? 0 : c1.marketCapRank ?? 0 > c2.marketCapRank ?? 0

@@ -95,7 +95,7 @@ final class CurrencyDetailViewController: UIViewController {
         self.addChild(hostingViewController)
         logoView.addSubview(hostingViewController.view)
         NSLayoutConstraint.activate([
-            hostingViewController.view.topAnchor.constraint(equalTo: logoView.topAnchor),
+            hostingViewController.view.topAnchor.constraint(equalTo: logoView.topAnchor, constant: 20),
             hostingViewController.view.leadingAnchor.constraint(equalTo: logoView.leadingAnchor),
             hostingViewController.view.trailingAnchor.constraint(equalTo: logoView.trailingAnchor),
             hostingViewController.view.bottomAnchor.constraint(equalTo: logoView.bottomAnchor)
@@ -113,12 +113,10 @@ final class CurrencyDetailViewController: UIViewController {
         finalStack.backgroundColor = .systemBackground
         view.addSubview(finalStack)
         NSLayoutConstraint.activate([
-            logoView.topAnchor.constraint(equalTo: finalStack.topAnchor,constant: 20),
             finalStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             finalStack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             finalStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            finalStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            detailStack.bottomAnchor.constraint(equalTo: finalStack.bottomAnchor, constant: -20)
+            finalStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
         currencyNameLabel.text = viewModel.name
         priceLabel.text = viewModel.currentPrice
