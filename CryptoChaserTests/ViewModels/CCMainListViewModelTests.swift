@@ -15,7 +15,7 @@ struct CCMainListViewModelTests {
     @Test func testFetchCoinsReturnArrayOfCurrencies() async throws {
         let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
         let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
-        let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase,
+        let viewModel = CryptoListViewModel(fetchUseCase: fetchUseCase,
                                             searchUseCase: searchUseCase) { _ in
             
         }
@@ -27,7 +27,7 @@ struct CCMainListViewModelTests {
     @Test func testSearchCoinsReturnASingleElementArray() async throws {
         let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
         let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
-        let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase,
+        let viewModel = CryptoListViewModel(fetchUseCase: fetchUseCase,
                                             searchUseCase: searchUseCase) { _ in
             
         }

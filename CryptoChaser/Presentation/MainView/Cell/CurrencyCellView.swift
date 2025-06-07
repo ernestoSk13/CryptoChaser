@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class CoinCollectionViewCell: UICollectionViewCell {
+final class CurrencyCellView: UICollectionViewCell {
     static let identifier = "CoinCell"
     
     private lazy var imageView: UIImageView = {

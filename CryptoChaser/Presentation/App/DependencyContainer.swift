@@ -20,7 +20,7 @@ final class DefaultDependencyContainer: DependencyContainer {
         let repository = DefaultCryptoRepository(service: dataSource, local: localDataSource)
         let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
         let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
-        let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase, navigationHandler: navigationHandler)
+        let viewModel = CryptoListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase, navigationHandler: navigationHandler)
         return CryptoListViewController(viewModel: viewModel)
     }
     
@@ -35,7 +35,7 @@ final class MockedDependencyContainer: DependencyContainer {
         let repository = MockCryptoRepository()
         let fetchUseCase = DefaultFetchCurrencyUseCase(repository: repository)
         let searchUseCase = DefaultSearchCurrencyUseCase(repository: repository)
-        let viewModel = CCMainListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase, navigationHandler: navigationHandler)
+        let viewModel = CryptoListViewModel(fetchUseCase: fetchUseCase, searchUseCase: searchUseCase, navigationHandler: navigationHandler)
         return CryptoListViewController(viewModel: viewModel)
     }
     

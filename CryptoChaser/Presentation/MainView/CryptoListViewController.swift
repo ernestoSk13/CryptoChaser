@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class CryptoListViewController: UIViewController {
-    private let viewModel: CCMainListViewModel
+    private let viewModel: CryptoListViewModel
     private let reuseIdentifier = "CoinCell"
     private let refreshControl = UIRefreshControl()
     private let searchController: UISearchController = UISearchController(searchResultsController: nil)
@@ -24,7 +24,7 @@ class CryptoListViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = Constants.defaultPadding
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.contentInset = .init(top: 12, left: 12, bottom: 12, right: 12)
-        collectionView.register(CoinCollectionViewCell.self, forCellWithReuseIdentifier: CoinCollectionViewCell.identifier)
+        collectionView.register(CurrencyCellView.self, forCellWithReuseIdentifier: CurrencyCellView.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
@@ -68,7 +68,7 @@ class CryptoListViewController: UIViewController {
     private var hasAnimatedItems = false
     let animationDuration: Double = 1.0
     
-    init(viewModel: CCMainListViewModel) {
+    init(viewModel: CryptoListViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -184,7 +184,7 @@ extension CryptoListViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CoinCollectionViewCell.identifier, for: indexPath) as? CoinCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrencyCellView.identifier, for: indexPath) as? CurrencyCellView else {
             fatalError("Couldn't build CoinCollectionViewCell")
         }
         let currency = viewModel.coins[indexPath.row]

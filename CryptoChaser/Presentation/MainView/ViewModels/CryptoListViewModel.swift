@@ -19,7 +19,7 @@ enum SortingOption: String, CaseIterable {
     case marketCapRank
 }
 
-final class CCMainListViewModel: ObservableObject {
+final class CryptoListViewModel: ObservableObject {
     // Use case for fetching an array of currencies
     private let fetchUseCase: FetchCurrencyUseCase
     // User case for searching a currency by it's name
