@@ -211,6 +211,11 @@ extension CryptoListViewController: UICollectionViewDelegate, UICollectionViewDe
         var snapshot = Snapshot()
         snapshot.appendSections([.main])
         snapshot.appendItems(viewModel.coins)
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty, viewModel.coins.isEmpty {
+            showNoResultsState()
+        } else if !viewModel.coins.isEmpty {
+            contentUnavailableConfiguration = nil
+        }
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
