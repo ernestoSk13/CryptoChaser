@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class CryptoListViewController: UIViewController {
+    
     private let viewModel: CryptoListViewModel
     private let reuseIdentifier = "CoinCell"
     private let refreshControl = UIRefreshControl()
@@ -17,6 +18,13 @@ class CryptoListViewController: UIViewController {
     var loadingConfig = UIContentUnavailableConfiguration.loading()
     var emptyConfig = UIContentUnavailableConfiguration.empty()
     var noResultsConfig = UIContentUnavailableConfiguration.search()
+    
+    // UICollectionView Diffable Data Source
+    enum Section {
+        case main
+    }
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Currency>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Currency>
 
     private lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -27,12 +35,13 @@ class CryptoListViewController: UIViewController {
         collectionView.contentInset = .init(top: 12, left: 12, bottom: 12, right: 12)
         collectionView.register(CurrencyCellView.self, forCellWithReuseIdentifier: CurrencyCellView.identifier)
         collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         return collectionView
     }()
+    
+    private lazy var dataSource = makeDataSource()
     
     // DispatchWorkItem to debouncer search
     var searchTask: DispatchWorkItem?
@@ -44,19 +53,19 @@ class CryptoListViewController: UIViewController {
         let ascendingImage = UIImage(systemName: ascendingOrder ? "chevron.up" : "chevron.down")
         let sortByRank = UIAction(title: "Rank", image: currentSelection == .marketCapRank ? ascendingImage : nil) { action in
             self.viewModel.sortCurrencies(.marketCapRank)
-            self.collectionView.reloadData()
+            self.applySnapshot()
             self.updateMenu()
         }
         
         let sortByName = UIAction(title: "Name", image: currentSelection == .name ? ascendingImage : nil) { action in
             self.viewModel.sortCurrencies(.name)
-            self.collectionView.reloadData()
+            self.applySnapshot()
             self.updateMenu()
         }
         
         let sortByPrice = UIAction(title: "Price", image: currentSelection == .price ? ascendingImage : nil) { action in
             self.viewModel.sortCurrencies(.price)
-            self.collectionView.reloadData()
+            self.applySnapshot()
             self.updateMenu()
         }
         
@@ -152,11 +161,11 @@ class CryptoListViewController: UIViewController {
     
     func endRefreshing() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-            self?.hasAnimatedItems = true
             self?.refreshControl.endRefreshing()
+            self?.hasAnimatedItems = true
         }
-        collectionView.reloadData()
-        self.contentUnavailableConfiguration = nil
+        applySnapshot()
+        contentUnavailableConfiguration = nil
     }
     
     func updateMenu() {
@@ -185,29 +194,25 @@ class CryptoListViewController: UIViewController {
     }
 }
 
-extension CryptoListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    // MARK: UICollectionViewDataSource
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let searchText = searchController.searchBar.text, !searchText.isEmpty && viewModel.coins.count == 0 {
-            showNoResultsState()
-        } else if viewModel.coins.count > 0 {
-            self.contentUnavailableConfiguration = nil
+extension CryptoListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    // MARK: Diffable data source
+    func makeDataSource() -> DataSource {
+        let dataSource = DataSource(collectionView: collectionView) { (collectionView, indexPath, currency) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrencyCellView.identifier, for: indexPath) as? CurrencyCellView
+            let currencyViewModel = CurrencyCellViewModel(currency: currency)
+            cell?.configure(with: currencyViewModel)
+            return cell
         }
         
-        return viewModel.coins.count
+        return dataSource
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrencyCellView.identifier, for: indexPath) as? CurrencyCellView else {
-            fatalError("Couldn't build CoinCollectionViewCell")
-        }
-        let currency = viewModel.coins[indexPath.row]
-        let currencyViewModel = CurrencyCellViewModel(currency: currency)
-        cell.configure(with: currencyViewModel)
-        cell.alpha = 1.0
-        return cell
+    func applySnapshot(animatingDifferences: Bool = true) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(viewModel.coins)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
-    
     
     //MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -238,7 +243,7 @@ extension CryptoListViewController: UISearchBarDelegate {
         
         let task = DispatchWorkItem { [weak self] in
             self?.viewModel.searchCurrency(name: searchText)
-            self?.collectionView.reloadData()
+            self?.applySnapshot()
         }
         
         searchTask = task
@@ -248,6 +253,6 @@ extension CryptoListViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         viewModel.searchCurrency(name: "")
-        collectionView.reloadData()
+        applySnapshot()
     }
 }
