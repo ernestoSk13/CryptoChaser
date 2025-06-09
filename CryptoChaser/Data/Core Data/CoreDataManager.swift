@@ -74,6 +74,11 @@ final class CoreDataManager: CoreDataStack {
     
     internal lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "DataModel")
+        if let storeURL = AppGroup.cryptoChaser.containerURL?.appending(path: "DataModel.sqlite") {
+            let description = NSPersistentStoreDescription(url: storeURL)
+            container.persistentStoreDescriptions = [description]
+        }
+        
         //Add support for lightweight migration
         if let description = container.persistentStoreDescriptions.first {
             description.shouldMigrateStoreAutomatically = true
@@ -85,6 +90,7 @@ final class CoreDataManager: CoreDataStack {
                 fatalError("Failed to load persistent stores: \(error), \(error.userInfo)")
             }
         })
+        container.viewContext.automaticallyMergesChangesFromParent = true
         return container
     }()
     

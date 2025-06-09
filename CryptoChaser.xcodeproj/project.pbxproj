@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6EB695412DF73ABE00CDBF3F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB695402DF73ABE00CDBF3F /* WidgetKit.framework */; };
+		6EB695432DF73ABE00CDBF3F /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB695422DF73ABE00CDBF3F /* SwiftUI.framework */; };
+		6EB695542DF73AC000CDBF3F /* CryptoChaserWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6EB6953F2DF73ABE00CDBF3F /* CryptoChaserWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		6E7AE4062DDD432900CAE565 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,13 +27,38 @@
 			remoteGlobalIDString = 6E7AE3EE2DDD432800CAE565;
 			remoteInfo = CryptoChaser;
 		};
+		6EB695522DF73AC000CDBF3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6E7AE3E72DDD432800CAE565 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6EB6953E2DF73ABE00CDBF3F;
+			remoteInfo = CryptoChaserWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6EB695552DF73AC000CDBF3F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6EB695542DF73AC000CDBF3F /* CryptoChaserWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6E7AE3EF2DDD432800CAE565 /* CryptoChaser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoChaser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E7AE4052DDD432900CAE565 /* CryptoChaserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoChaserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E7AE40F2DDD432900CAE565 /* CryptoChaserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoChaserUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB694CC2DF4FB1700CDBF3F /* CryptoChaserTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CryptoChaserTests.xctestplan; sourceTree = "<group>"; };
+		6EB6953F2DF73ABE00CDBF3F /* CryptoChaserWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CryptoChaserWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EB695402DF73ABE00CDBF3F /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		6EB695422DF73ABE00CDBF3F /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		6EB6955A2DF73CBC00CDBF3F /* CryptoChaserWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CryptoChaserWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,6 +76,35 @@
 			);
 			target = 6E7AE40E2DDD432900CAE565 /* CryptoChaserUITests */;
 		};
+		6EB695592DF73AC000CDBF3F /* Exceptions for "CryptoChaserWidget" folder in "CryptoChaserWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6EB6953E2DF73ABE00CDBF3F /* CryptoChaserWidgetExtension */;
+		};
+		6EB6955E2DF743C500CDBF3F /* Exceptions for "CryptoChaser" folder in "CryptoChaserWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Data/Core Data/CoreDataManager.swift",
+				"Data/Core Data/LocalCurrency+Extension.swift",
+				"Data/Core Data/Model/DataModel.xcdatamodeld",
+				Data/CryptoRepository.swift,
+				"Data/Currency Storage/CurrencyCoreDataStorage.swift",
+				Domain/Models/Currency.swift,
+				Infrastructure/CryptoService.swift,
+				Infrastructure/Endpoints/FetchCoinsEndpoint.swift,
+				Infrastructure/RemoteCryptoService.swift,
+				Shared/AppGroup.swift,
+				"Shared/Bundle+Extensions.swift",
+				Shared/Constants.swift,
+				"Shared/Date+Extensions.swift",
+				"Shared/Double+Extensions.swift",
+				Shared/ImageLoader.swift,
+				"Supporting Files/Colors.xcassets",
+			);
+			target = 6EB6953E2DF73ABE00CDBF3F /* CryptoChaserWidgetExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -53,6 +113,7 @@
 			exceptions = (
 				6E7AE4172DDD432900CAE565 /* Exceptions for "CryptoChaser" folder in "CryptoChaser" target */,
 				6E7AE5F72DDDBC0400CAE565 /* Exceptions for "CryptoChaser" folder in "CryptoChaserUITests" target */,
+				6EB6955E2DF743C500CDBF3F /* Exceptions for "CryptoChaser" folder in "CryptoChaserWidgetExtension" target */,
 			);
 			path = CryptoChaser;
 			sourceTree = "<group>";
@@ -65,6 +126,14 @@
 		6E7AE4122DDD432900CAE565 /* CryptoChaserUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CryptoChaserUITests;
+			sourceTree = "<group>";
+		};
+		6EB695442DF73ABE00CDBF3F /* CryptoChaserWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6EB695592DF73AC000CDBF3F /* Exceptions for "CryptoChaserWidget" folder in "CryptoChaserWidgetExtension" target */,
+			);
+			path = CryptoChaserWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -91,16 +160,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6EB6953C2DF73ABE00CDBF3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EB695432DF73ABE00CDBF3F /* SwiftUI.framework in Frameworks */,
+				6EB695412DF73ABE00CDBF3F /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		6E7AE3E62DDD432800CAE565 = {
 			isa = PBXGroup;
 			children = (
+				6EB6955A2DF73CBC00CDBF3F /* CryptoChaserWidgetExtension.entitlements */,
 				6EB694CC2DF4FB1700CDBF3F /* CryptoChaserTests.xctestplan */,
 				6E7AE3F12DDD432800CAE565 /* CryptoChaser */,
 				6E7AE4082DDD432900CAE565 /* CryptoChaserTests */,
 				6E7AE4122DDD432900CAE565 /* CryptoChaserUITests */,
+				6EB695442DF73ABE00CDBF3F /* CryptoChaserWidget */,
 				6E7AE5F82DDDBC7B00CAE565 /* Frameworks */,
 				6E7AE3F02DDD432800CAE565 /* Products */,
 			);
@@ -112,6 +192,7 @@
 				6E7AE3EF2DDD432800CAE565 /* CryptoChaser.app */,
 				6E7AE4052DDD432900CAE565 /* CryptoChaserTests.xctest */,
 				6E7AE40F2DDD432900CAE565 /* CryptoChaserUITests.xctest */,
+				6EB6953F2DF73ABE00CDBF3F /* CryptoChaserWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,6 +200,8 @@
 		6E7AE5F82DDDBC7B00CAE565 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EB695402DF73ABE00CDBF3F /* WidgetKit.framework */,
+				6EB695422DF73ABE00CDBF3F /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -133,10 +216,12 @@
 				6E7AE3EB2DDD432800CAE565 /* Sources */,
 				6E7AE3EC2DDD432800CAE565 /* Frameworks */,
 				6E7AE3ED2DDD432800CAE565 /* Resources */,
+				6EB695552DF73AC000CDBF3F /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6EB695532DF73AC000CDBF3F /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				6E7AE3F12DDD432800CAE565 /* CryptoChaser */,
@@ -194,6 +279,28 @@
 			productReference = 6E7AE40F2DDD432900CAE565 /* CryptoChaserUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		6EB6953E2DF73ABE00CDBF3F /* CryptoChaserWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EB695582DF73AC000CDBF3F /* Build configuration list for PBXNativeTarget "CryptoChaserWidgetExtension" */;
+			buildPhases = (
+				6EB6953B2DF73ABE00CDBF3F /* Sources */,
+				6EB6953C2DF73ABE00CDBF3F /* Frameworks */,
+				6EB6953D2DF73ABE00CDBF3F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6EB695442DF73ABE00CDBF3F /* CryptoChaserWidget */,
+			);
+			name = CryptoChaserWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = CryptoChaserWidgetExtension;
+			productReference = 6EB6953F2DF73ABE00CDBF3F /* CryptoChaserWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -214,6 +321,9 @@
 					6E7AE40E2DDD432900CAE565 = {
 						CreatedOnToolsVersion = 16.3;
 						TestTargetID = 6E7AE3EE2DDD432800CAE565;
+					};
+					6EB6953E2DF73ABE00CDBF3F = {
+						CreatedOnToolsVersion = 16.3;
 					};
 				};
 			};
@@ -236,6 +346,7 @@
 				6E7AE3EE2DDD432800CAE565 /* CryptoChaser */,
 				6E7AE4042DDD432900CAE565 /* CryptoChaserTests */,
 				6E7AE40E2DDD432900CAE565 /* CryptoChaserUITests */,
+				6EB6953E2DF73ABE00CDBF3F /* CryptoChaserWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -256,6 +367,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6E7AE40D2DDD432900CAE565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6EB6953D2DF73ABE00CDBF3F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -286,6 +404,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6EB6953B2DF73ABE00CDBF3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -299,6 +424,11 @@
 			target = 6E7AE3EE2DDD432800CAE565 /* CryptoChaser */;
 			targetProxy = 6E7AE4102DDD432900CAE565 /* PBXContainerItemProxy */;
 		};
+		6EB695532DF73AC000CDBF3F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6EB6953E2DF73ABE00CDBF3F /* CryptoChaserWidgetExtension */;
+			targetProxy = 6EB695522DF73AC000CDBF3F /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -307,6 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CryptoChaser/CryptoChaser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49VFMFM852;
@@ -335,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CryptoChaser/CryptoChaser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 49VFMFM852;
@@ -551,6 +683,62 @@
 			};
 			name = Release;
 		};
+		6EB695562DF73AC000CDBF3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = CryptoChaserWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49VFMFM852;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CryptoChaserWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CryptoChaserWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsk.CryptoChaser.CryptoChaserWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6EB695572DF73AC000CDBF3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = CryptoChaserWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49VFMFM852;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CryptoChaserWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CryptoChaserWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.optionalsk.CryptoChaser.CryptoChaserWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -586,6 +774,15 @@
 			buildConfigurations = (
 				6E7AE4212DDD432900CAE565 /* Debug */,
 				6E7AE4222DDD432900CAE565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6EB695582DF73AC000CDBF3F /* Build configuration list for PBXNativeTarget "CryptoChaserWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6EB695562DF73AC000CDBF3F /* Debug */,
+				6EB695572DF73AC000CDBF3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
