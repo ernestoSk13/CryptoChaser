@@ -13,10 +13,13 @@ struct CurrencyPropertyValue: Identifiable {
     }
     let title: String
     let value: String
+    let associatedSorting: SortableProperties
+    var icon: String = "dollarsign"
 }
 
-final class CurrencyDetailViewModel {
+final class CurrencyDetailViewModel: ObservableObject {
     let currency: Currency
+    let repository: CryptoRepository
     var name: String { currency.name }
     var currentPriceValue: Double { currency.currentPrice }
     var currentPrice: String { currency.currentPrice.formatCurrency() }
@@ -29,20 +32,44 @@ final class CurrencyDetailViewModel {
     var lowestPrice: String { currency.low24?.formatCurrency() ?? "N/A" }
     var priceChange: String { currency.priceChange24h?.formatCurrency() ?? "-" }
     var marketCap: String { "$\(currency.marketCap?.shortName() ?? "-")" }
+    @Published var coins: [Currency] = []
+    @Published var selectedProperty: Int = 0
+    
     
     lazy var properties: [CurrencyPropertyValue] = {
        [
-        CurrencyPropertyValue(title: "Ranking", value: ranking),
-        CurrencyPropertyValue(title: "Total Volume", value: totalVolume),
-        CurrencyPropertyValue(title: "Highest Price", value: highestPrice),
-        CurrencyPropertyValue(title: "Lowest Price", value: lowestPrice),
-        CurrencyPropertyValue(title: "Price Change", value: priceChange),
-        CurrencyPropertyValue(title: "Market Cap", value: marketCap)
+        CurrencyPropertyValue(title: "Current Price", value: currentPrice, associatedSorting: .currentPrice),
+        CurrencyPropertyValue(title: "Ranking", value: ranking, associatedSorting: .marketCapRank, icon: "list.number"),
+        CurrencyPropertyValue(title: "Total Volume", value: totalVolume, associatedSorting: .totalVolume, icon: "numbers"),
+        CurrencyPropertyValue(title: "Highest Price", value: highestPrice, associatedSorting: .high24),
+        CurrencyPropertyValue(title: "Lowest Price", value: lowestPrice, associatedSorting: .low24),
+        CurrencyPropertyValue(title: "Price Change", value: priceChange, associatedSorting: .priceChange24h),
+        CurrencyPropertyValue(title: "Market Cap", value: marketCap, associatedSorting: .marketCap)
        ]
     }()
     
     
-    init(currency: Currency) {
+    init(currency: Currency, repository: CryptoRepository) {
         self.currency = currency
+        self.repository = repository
+        fillCoinsArray()
+    }
+    
+    func fillCoinsArray(sortedBy property: SortableProperties = .currentPrice) {
+        do {
+            let coins = try repository.loadLocalCoins(sortedBy: property, ascending: ascendingSortFor(property))
+            self.coins = coins
+        } catch {
+            print("Error")
+        }
+    }
+    
+    func ascendingSortFor(_ property: SortableProperties) -> Bool {
+        switch property {
+        case .marketCapRank:
+            return true
+        default:
+            return false
+        }
     }
 }

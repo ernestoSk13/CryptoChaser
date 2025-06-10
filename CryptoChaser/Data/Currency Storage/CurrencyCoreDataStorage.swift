@@ -31,10 +31,10 @@ final class CurrencyCoreDataStorage {
     /// Makes a fetch request with a query sent from the search controller. the results are compared with the LocalCurrency name
     /// - Parameter query: a String that represents the name query
     /// - Returns: a NSFetchRequest that will be used view the context
-    func fetchCoinsRequest(_ query: String = "") -> NSFetchRequest<LocalCurrency> {
+    func fetchCoinsRequest(_ query: String = "", sortedBy property: SortableProperties = .marketCapRank, ascending: Bool = true) -> NSFetchRequest<LocalCurrency> {
         let request: NSFetchRequest = NSFetchRequest<LocalCurrency>(entityName: "LocalCurrency")
         request.fetchLimit = 20
-        let sort = NSSortDescriptor.init(key: "marketCapRank", ascending: true)
+        let sort = NSSortDescriptor.init(key: property.rawValue, ascending: ascending)
         request.sortDescriptors = [sort]
         if !query.isEmpty {
             request.predicate = NSPredicate(format: "name BEGINSWITH[c] %@", query)
@@ -44,8 +44,8 @@ final class CurrencyCoreDataStorage {
     
     /// Makes a general search for all the LocalCurrency objects.
     /// - Returns: an Array of LocalCurrency objects
-    func fetchAllCoins() throws -> [LocalCurrency] {
-        let request = fetchCoinsRequest()
+    func fetchAllCoins(sortedBy property: SortableProperties = .marketCapRank, ascending: Bool = true) throws -> [LocalCurrency] {
+        let request = fetchCoinsRequest(sortedBy: property, ascending: ascending)
         return try coreDataManager.performFetchRequest(request)
     }
     

@@ -241,7 +241,7 @@ extension CryptoListViewController: UICollectionViewDelegate, UICollectionViewDe
     
     //MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = UIDevice.current.userInterfaceIdiom == .pad ? collectionView.frame.width / 3 : collectionView.frame.width
+        let size = UIDevice.current.userInterfaceIdiom == .pad ? collectionView.frame.width / 2 : collectionView.frame.width
         return CGSize(width: size - (Constants.defaultPadding * 2), height: 128)
     }
     
