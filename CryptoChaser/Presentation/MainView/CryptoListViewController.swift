@@ -10,7 +10,6 @@ import UIKit
 import Combine
 
 class CryptoListViewController: UIViewController {
-    
     private let viewModel: CryptoListViewModel
     private var subscriptions = Set<AnyCancellable>()
     private let reuseIdentifier = "CoinCell"
@@ -44,6 +43,7 @@ class CryptoListViewController: UIViewController {
         
         return collectionView
     }()
+    
     
     private lazy var dataSource = makeDataSource()
     
@@ -212,6 +212,34 @@ class CryptoListViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape, UIDevice.current.userInterfaceIdiom == .pad {
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            let width = view.frame.width / 3 - (3 * 2 * 12)
+            layout?.itemSize = CGSize(width: width, height: 128)
+            layout?.invalidateLayout()
+        } else if UIDevice.current.orientation.isPortrait, UIDevice.current.userInterfaceIdiom == .pad {
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            let width = view.frame.width / 2 - (2 * 2 * 12)
+            layout?.itemSize = CGSize(width: width, height: 128)
+            layout?.invalidateLayout()
+        }
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: any UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape, UIDevice.current.userInterfaceIdiom == .pad {
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            let width = view.frame.width / 3 - (3 * 2 * 12)
+            layout?.itemSize = CGSize(width: width, height: 128)
+            layout?.invalidateLayout()
+        } else if UIDevice.current.orientation.isPortrait, UIDevice.current.userInterfaceIdiom == .pad {
+            let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+            let width = view.frame.width / 2 - (2 * 2 * 12)
+            layout?.itemSize = CGSize(width: width, height: 128)
+            layout?.invalidateLayout()
+        }
+    }
 }
 
 extension CryptoListViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -241,7 +269,8 @@ extension CryptoListViewController: UICollectionViewDelegate, UICollectionViewDe
     
     //MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = UIDevice.current.userInterfaceIdiom == .pad ? collectionView.frame.width / 2 : collectionView.frame.width
+        let columns: CGFloat = UIDevice.current.orientation.isPortrait ? 2 : 3
+        let size = UIDevice.current.userInterfaceIdiom == .phone ? collectionView.frame.width : collectionView.frame.width / columns
         return CGSize(width: size - (Constants.defaultPadding * 2), height: 128)
     }
     
