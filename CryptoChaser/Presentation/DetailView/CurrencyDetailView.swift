@@ -17,18 +17,7 @@ struct CurrencyDetailView: View {
     var isIpad = UIDevice.current.userInterfaceIdiom == .pad
     @State var scrollPosition = ""
     @State var selectedCurrency: String? = ""
-    
-    var verticalHeader: some View {
-        VStack {
-            RemoteImageView(url: viewModel.imageUrl)
-                .frame(width: 120, height: 120)
-                .padding(12)
-                .accessibilityIdentifier(Constants.Accessibility.DetailView.Logo.identifier)
-                .accessibilityLabel(Constants.Accessibility.DetailView.Logo.label)
-            priceLabel
-        }.matchedGeometryEffect(id: "HeaderView", in: animation)
-    }
-    
+   
     var horizontalHeader: some View {
         HStack {
             RemoteImageView(url: viewModel.imageUrl)
@@ -60,11 +49,7 @@ struct CurrencyDetailView: View {
     
     var body: some View {
             VStack(alignment: .center) {
-                if !isIpad {
-                    verticalHeader
-                } else {
-                    horizontalHeader
-                }
+                horizontalHeader
                 
                 Picker("", selection: $currentTab) {
                     Text("Info").tag(0)
@@ -90,29 +75,30 @@ struct CurrencyDetailView: View {
                     }
                 } else {
                     VStack {
-                        Menu {
-                            ForEach(0 ..< viewModel.properties.count, id: \.self) { idx in
-                                let property = viewModel.properties[idx]
-                                Button {
-                                    viewModel.selectedProperty = idx
-                                } label: {
-                                    Label {
-                                        Text(property.title)
-                                    } icon: {
-                                        Image(systemName: property.icon)
-                                            .controlSize(.large)
+                        HStack {
+                            Spacer()
+                            Menu {
+                                ForEach(0 ..< viewModel.properties.count, id: \.self) { idx in
+                                    let property = viewModel.properties[idx]
+                                    Button {
+                                        viewModel.selectedProperty = idx
+                                    } label: {
+                                        Label {
+                                            Text(property.title)
+                                        } icon: {
+                                            Image(systemName: property.icon)
+                                                .controlSize(.large)
+                                        }
                                     }
-
                                 }
-                            }
-                        } label: {
-                            HStack {
-                                Text(viewModel.properties[viewModel.selectedProperty].title)
-                                Image(systemName: "chevron.down")
-                                    .controlSize(.large)
-                            }
-                        }.padding()
-                            .buttonStyle(BorderedButtonStyle())
+                            } label: {
+                                HStack {
+                                    Text(viewModel.properties[viewModel.selectedProperty].title)
+                                    Image(systemName: "chevron.down")
+                                        .controlSize(.large)
+                                }
+                            }.padding()
+                        }
                         
                         let selectedProperty = viewModel.properties[viewModel.selectedProperty]
                         CurrencyComparisonView(viewModel: CurrencyComparisonViewModel(currentCurrency: viewModel.currency,
