@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WidgetKit
 
 enum SortableProperties: String {
     case currentPrice
@@ -74,6 +75,17 @@ final class DefaultCryptoRepository: CryptoRepository {
         cached(localCoins)
         let remoteCoins = try await service.fetchCoins()
         try await local.saveCurrencies(remoteCoins)
+        //Reload the Widget information if there's a widget installed.
+        WidgetCenter.shared.getCurrentConfigurations { result in
+            guard case .success(let widgets) = result else {
+                return
+            }
+            
+            for widget in widgets {
+                WidgetCenter.shared.reloadTimelines(ofKind: widget.kind)
+            }
+        }
+        
         return remoteCoins
     }
     

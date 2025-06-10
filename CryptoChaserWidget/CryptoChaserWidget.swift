@@ -31,7 +31,7 @@ struct Provider: AppIntentTimelineProvider {
         
         let entry = CurrencyDetailEntry(date: Date(), configuration: configuration, currencies: currencies)
         let lastUpdate = Date()
-        let nextUpdate = Calendar.current.date(byAdding: DateComponents(minute: 1), to: lastUpdate)!
+        let nextUpdate = Calendar.current.date(byAdding: DateComponents(minute: 60), to: lastUpdate)!
 
         return Timeline(entries: [entry], policy: .after(nextUpdate))
     }

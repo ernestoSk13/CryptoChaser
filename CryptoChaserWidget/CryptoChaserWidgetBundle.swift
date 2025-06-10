@@ -12,7 +12,5 @@ import SwiftUI
 struct CryptoChaserWidgetBundle: WidgetBundle {
     var body: some Widget {
         CryptoChaserWidget()
-        CryptoChaserWidgetControl()
-        CryptoChaserWidgetLiveActivity()
     }
 }
