@@ -23,7 +23,10 @@ final class DefaultDependencyContainer: DependencyContainer {
     }
     
     func makeCurrencyDetailScreen(currency: Currency) -> UIViewController {
-        let viewModel = CurrencyDetailViewModel(currency: currency)
+        let dataSource = RemoteCryptoService()
+        let localDataSource = CurrencyCoreDataStorage()
+        let repository = DefaultCryptoRepository(service: dataSource, local: localDataSource)
+        let viewModel = CurrencyDetailViewModel(currency: currency, repository: repository)
         return CurrencyDetailView.makeCurrencyDetailView(viewModel: viewModel)
     }
 }
@@ -36,7 +39,8 @@ final class MockedDependencyContainer: DependencyContainer {
     }
     
     func makeCurrencyDetailScreen(currency: Currency) -> UIViewController {
-        let viewModel = CurrencyDetailViewModel(currency: currency)
+        let repository = MockCryptoRepository()
+        let viewModel = CurrencyDetailViewModel(currency: currency, repository: repository)
         return CurrencyDetailView.makeCurrencyDetailView(viewModel: viewModel)
     }
 }

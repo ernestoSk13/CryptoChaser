@@ -7,7 +7,20 @@
 
 import Foundation
 
+enum SortableProperties: String {
+    case currentPrice
+    case priceChange24h
+    case totalVolume
+    case marketCapRank
+    case high24
+    case low24
+    case marketCap
+}
+
 protocol CryptoRepository {
+    /// Makes a fetch to Core Data and returns an array of transformed Currency objects.
+    /// - Returns: an Array of Currency objects.
+    func loadLocalCoins(sortedBy property: SortableProperties, ascending: Bool) throws -> [Currency]
     /// Makes a fetch to the remote server and returns an array of Currency objects.
     /// - Parameter cached: a closure that will return the Core Data objects stored.
     /// - Returns:an Array of Currency objects.
@@ -21,8 +34,8 @@ final class MockCryptoRepository: CryptoRepository {
     
     /// Makes a fetch to Core Data and returns an array of transformed Currency objects.
     /// - Returns: an Array of Currency objects.
-    private func loadLocalCoins() throws -> [Currency] {
-        let localElements = try local.fetchAllCoins()
+    func loadLocalCoins(sortedBy property: SortableProperties = .marketCapRank, ascending: Bool = true) throws -> [Currency] {
+        let localElements = try local.fetchAllCoins(sortedBy: property)
         return localElements.map { $0.toRemoteModel() }
     }
     
@@ -51,8 +64,8 @@ final class DefaultCryptoRepository: CryptoRepository {
     
     /// Makes a fetch to Core Data and returns an array of transformed Currency objects.
     /// - Returns: an Array of Currency objects.
-    private func loadLocalCoins() throws -> [Currency] {
-        let localElements = try local.fetchAllCoins()
+    func loadLocalCoins(sortedBy property: SortableProperties = .marketCapRank, ascending: Bool = true) throws -> [Currency] {
+        let localElements = try local.fetchAllCoins(sortedBy: property, ascending: ascending)
         return localElements.map { $0.toRemoteModel() }
     }
     
